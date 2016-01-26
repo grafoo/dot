@@ -5,11 +5,11 @@
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
 	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;(add-to-list 'package-archives
+;	     '("melpa" . "http://melpa.org/packages/") t)
+;(add-to-list 'package-archives
+;	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (package-initialize)
 
@@ -17,12 +17,11 @@
     (package-refresh-contents))
 
 (defvar my-packages
-  '(evil
-     relative-line-numbers
-     clojure-mode
-     cider
-     d-mode
-     paredit))
+  '(relative-line-numbers
+    clojure-mode
+    cider
+    solarized-theme
+    paredit))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -42,21 +41,24 @@
 
 
 ;;;
-;; editor settings
-;;
+;; editor/ui settings
+;;;
 
 (global-relative-line-numbers-mode) ;package relative-line-numbers
 (setq column-number-mode t)
 
-;; vim for the win
-(require 'evil) ;package evil
-(evil-mode 1) ;package evil
-
 (show-paren-mode 1) ;show matching pairs of enclosing characters
 
+;; disable all kinds of bars
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+
 
 ;;;
-;; autocompletion
+;; theme stuff
 ;;;
 
-(global-set-key "\M- " 'hippie-expand)
+(load-theme 'solarized-dark t) ;https://github.com/bbatsov/solarized-emacs
+
+(setq x-underline-at-descent-line t) ;underline postition setting for Xorg
