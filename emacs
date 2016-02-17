@@ -49,6 +49,8 @@
 (require 'evil)
 (evil-mode 1)
 
+(blink-cursor-mode 0)
+
 (global-linum-mode 1)
 (require 'linum-relative)
 (linum-relative-on)
