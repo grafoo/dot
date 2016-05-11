@@ -71,8 +71,9 @@
 (linum-relative-on)
 
 (setq column-number-mode t)
-
-(show-paren-mode 1)  ; show matching pairs of enclosing characters
+(setq-default tab-width 2)							; display tabs as 2 spaces wide but do not change the actual indentation level
+(electric-pair-mode t)									; auto close characters like e.g. brackets
+(show-paren-mode 1)											; show matching pairs of enclosing characters
 
 ;; disable all kinds of bars
 (if (display-graphic-p)
