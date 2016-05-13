@@ -120,10 +120,11 @@
 (setq css-indent-offset 2)  ; css
 
 ;; go-mode
+(setq gofmt-command "goimports")				; https://godoc.org/golang.org/x/tools/cmd/goimports
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; gocode https://github.com/nsf/gocode
-(add-to-list 'load-path "~/prj/gop/src/github.com/nsf/gocode/emacs/")
+(add-to-list 'load-path "~/gop/src/github.com/nsf/gocode/emacs/")
 (require 'go-autocomplete)
 (require 'auto-complete-config)
 (ac-config-default)
