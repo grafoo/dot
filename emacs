@@ -1,20 +1,14 @@
-;;;
-;; packages
-;;;
+;;; packages
 
 (require 'package)
 
-;; (add-to-list 'package-archives
-;; 	     '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/") t)
-;; (add-to-list 'package-archives
-;; 	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
 
 (package-initialize)
 
 (unless package-archive-contents
-    (package-refresh-contents))
+  (package-refresh-contents))
 
 (defvar my-packages
   '(evil
@@ -33,31 +27,18 @@
   (unless (package-installed-p p)
     (package-install p)))
 
-;;;
-;; docs
-;;;
 
-;; go-mode
-;; https://github.com/dominikh/go-mode.el
-;; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
-;; http://dominik.honnef.co/posts/2013/08/writing_go_in_emacs__cont__/
+;;; file handling
 
-
-;;;
-;; file handling
-;;;
-
-(setq auto-save-default nil)  ; disable autosave files e.g. #foobar.txt#
-(setq make-backup-files nil)  ; disable backup files e.g. foobar.txt~
+(setq auto-save-default nil) ;disable autosave files e.g. #foobar.txt#
+(setq make-backup-files nil) ;disable backup files e.g. foobar.txt~
 ;; (defun save-buffer-when-visiting-file (begin-region end-region text-length-before-change)  ; todo: make it play nicely with 'gofmt-before-save
 ;;     "if current buffer is visiting a file trigger basic-save-buffer"
 ;;     (when (buffer-file-name) (basic-save-buffer)))
 ;; (add-hook 'after-change-functions 'save-buffer-when-visiting-file)
 
 
-;;;
-;; editor/ui settings
-;;;
+;;; editor/ui settings
 
 ;; vim keybindings ftw
 (require 'evil)
@@ -71,9 +52,9 @@
 (linum-relative-on)
 
 (setq column-number-mode t)
-(setq-default tab-width 2)							; display tabs as 2 spaces wide but do not change the actual indentation level
-(electric-pair-mode t)									; auto close characters like e.g. brackets
-(show-paren-mode 1)											; show matching pairs of enclosing characters
+(setq-default tab-width 2) ;display tabs as 2 spaces wide but do not change the actual indentation level
+(electric-pair-mode t)     ;auto close characters like e.g. brackets
+(show-paren-mode 1)        ;show matching pairs of enclosing characters
 
 ;; disable all kinds of bars
 (if (display-graphic-p)
@@ -82,45 +63,47 @@
       (scroll-bar-mode -1)))
 (menu-bar-mode -1)
 
-(setq inhibit-startup-message t)  ; disable startup message
+(setq inhibit-startup-message t)        ;disable startup message
 
 
-;;;
-;; theme stuff
-;;;
+;;; theme stuff
 
-(load-theme 'solarized-dark t)  ; https://github.com/bbatsov/solarized-emacs
+(load-theme 'solarized-dark t) ;https://github.com/bbatsov/solarized-emacs
 
-(setq x-underline-at-descent-line t)  ; underline postition setting for Xorg
+(setq x-underline-at-descent-line t) ;underline postition setting for Xorg
+
+(add-to-list 'default-frame-alist
+             '(font . "mononoki"))
 
 
-;;;
-;; ide settings
-;;;
+;;; ide settings
 
 ;; clojure
 ;; (add-hook 'clojure-mode-hook #'enable-paredit-mode)  ; package clojure-mode
 
 ;; elisp
-;; (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            ;; #'enable-paredit-mode
+            (setq indent-tabs-mode nil)))
 
 ;; set indentation level
-;; html
 (add-hook 'html-mode-hook
-	  (lambda ()
-	    (set (make-local-variable 'sgml-mode-hook) 2)))
+          (lambda ()
+            (set (make-local-variable 'sgml-mode-hook) 2)))
 
-(add-hook 'sgml-mode-hook
-	  (lambda ()
-	    (set (make-local-variable 'sgml-basic-offset) 2)
-	    (sgml-guess-indent)))
+(add-hook 'sgml-mode-hook               ;this is also for html
+          (lambda ()
+            (set (make-local-variable 'sgml-basic-offset) 2)
+            (sgml-guess-indent)))
 
 (add-hook 'js-mode
-	  (setq js-indent-level 2))  ; javascript
-(setq css-indent-offset 2)  ; css
+          (setq js-indent-level 2))     ;javascript
+
+(setq css-indent-offset 2)
 
 ;; go-mode
-(setq gofmt-command "goimports")				; https://godoc.org/golang.org/x/tools/cmd/goimports
+(setq gofmt-command "goimports") ;https://godoc.org/golang.org/x/tools/cmd/goimports
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; gocode https://github.com/nsf/gocode
