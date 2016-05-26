@@ -10,5 +10,7 @@ alias lr='ls -rhl --color=auto'
 which virtualenv2 >/dev/null 2>&1 && alias virtualenv='virtualenv2'
 
 alias emacs='emacs --no-window-system'
+alias emd='emacs --daemon'
+alias emc='emacsclient -nw'
 
 PS1='[\u@\h \W]\$ '
