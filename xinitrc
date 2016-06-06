@@ -1,3 +1,4 @@
 #xrdb $HOME/.Xresources
-setxkbmap -option "caps:escape"  # remap caps to escape and blow up caps for good
+# set layout to german, eliminate deadkeys, remap caps to escape and blow up caps for good
+setxkbmap -layout de -variant nodeadkeys -option "caps:escape"
 exec startxfce4
