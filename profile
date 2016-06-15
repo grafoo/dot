@@ -1,3 +1,6 @@
+# editor
+export EDITOR="vim"
+
 # go
 export GOROOT="$HOME/app/go"
 export GOPATH="$HOME/gop"

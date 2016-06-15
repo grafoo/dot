@@ -14,12 +14,14 @@
   '(evil
     linum-relative
     solarized-theme
+    org-bullets
     ;; paredit
     ;; clojure-mode
     ;; cider
     elpy
     go-mode
     auto-complete
+    go-autocomplete
     go-eldoc
     flycheck))
 
@@ -41,13 +43,16 @@
 ;;; editor/ui settings
 
 ;; vim keybindings ftw
-(require 'evil)
-(evil-mode 1)
+(evil-mode t)
 
 (blink-cursor-mode 0)
 
+;; show org-mode bullets as utf-8 characters
+;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+
 ;; line numbers
-(global-linum-mode 1)
+(global-linum-mode)
 (require 'linum-relative)
 (linum-relative-on)
 
@@ -64,6 +69,11 @@
 (menu-bar-mode -1)
 
 (setq inhibit-startup-message t)        ;disable startup message
+
+;; switch to last used buffer
+(global-set-key (kbd "C-c b") '(lambda ()
+                                 (interactive)
+                                 (switch-to-buffer (other-buffer))))
 
 
 ;;; theme stuff
@@ -107,13 +117,17 @@
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; gocode https://github.com/nsf/gocode
-(add-to-list 'load-path "~/gop/src/github.com/nsf/gocode/emacs/")
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-(ac-config-default)
+(require 'go-autocomplete)          ;requires auto-complete-config
+                                    ;which is installed with the auto-complete package
+(ac-config-default)                 ;enable auto-complete with default config
 
 ;; go-eldoc https://github.com/syohex/emacs-go-eldoc
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
+
 ;; flycheck
 (global-flycheck-mode)
+
+
+;; orgmode
+(setq org-html-postamble nil)
