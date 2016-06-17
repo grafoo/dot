@@ -5,3 +5,4 @@
 	helper = cache --timeout=28800
 [alias]
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	stt = status

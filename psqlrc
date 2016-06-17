@@ -1,0 +1,23 @@
+-- do not print the output of commands in this file
+\set QUIET on
+
+-- lines which begin with a space or match the previous history line are not entered into the history list
+\set HISTCONTROL ignoreboth
+
+-- maintain a separate history for each database
+\set HISTFILE ~/.psql_history- :DBNAME
+
+-- use upper case when completing an SQL key word
+\set COMP_KEYWORD_CASE upper
+
+-- switch to expanded output mode whenever the query output is wider than the screen
+\x auto
+
+-- show how long each SQL statement takes in milliseconds
+\timing on
+
+-- print (null) instead of an empty string for null values
+\pset null '(null)'
+
+-- enable welcome messages and other informational output again
+\set QUIET off
