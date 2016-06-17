@@ -32,3 +32,7 @@
 ## windows
 
 `go get -u -ldflags -H=windowsgui github.com/nsf/gocode`
+
+### ext libs
+http://gnuwin32.sourceforge.net/packages/zlib.htm
+http://gnuwin32.sourceforge.net/packages/diffutils.htm

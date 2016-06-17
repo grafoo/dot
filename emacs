@@ -17,7 +17,7 @@
     ;; paredit
     ;; clojure-mode
     ;; cider
-    elpy
+    jedi
     go-mode
     auto-complete
     go-eldoc
@@ -117,3 +117,7 @@
 
 ;; flycheck
 (global-flycheck-mode)
+
+;; python
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
