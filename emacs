@@ -88,6 +88,8 @@
 
 ;;; ide settings
 
+(setq-default indent-tabs-mode nil)
+
 ;; clojure
 ;; (add-hook 'clojure-mode-hook #'enable-paredit-mode)  ; package clojure-mode
 
