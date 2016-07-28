@@ -1,0 +1,48 @@
+"
+" GENERAL
+"
+set nocompatible
+set encoding=utf-8
+
+"
+" PLUGINS
+"
+call plug#begin('~/.vim/plugged')
+source $HOME/.vimrc_plugins
+call plug#end()
+
+"
+" FILETYPES
+"
+autocmd FileType gitcommit setlocal formatoptions+=t textwidth=72
+autocmd FileType make setlocal noexpandtab
+
+"
+" INDENTATION
+"
+" tabs vs spaces
+set expandtab " insert space characters whenever the tab key is pressed
+set tabstop=4 " number of space characters that will be inserted when the tab key is pressed
+set shiftwidth=4 " number of space characters inserted for indentation
+set softtabstop=4 " makes the backspace key treat four spaces like a tab
+set backspace=indent,eol,start
+filetype plugin indent on
+vnoremap < <gv
+vnoremap > >gv
+
+"
+" LINENUMBERS
+"
+set number
+set relativenumber
+
+"
+" APPEARANCE
+"
+syntax on
+set list
+" tab digraphs: `-M`
+" trail digraphs: `.M`
+set listchars=tab:—,trail:·
+set background=dark
+
