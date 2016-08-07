@@ -1,3 +1,10 @@
+;
+;
+; general
+
+(setq ring-bell-function 'ignore)
+
+
 ;;; packages
 
 (require 'package)
@@ -23,7 +30,8 @@
     auto-complete
     go-autocomplete
     go-eldoc
-    flycheck))
+    flycheck
+    clang-format))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -44,6 +52,9 @@
 
 ;; vim keybindings ftw
 (evil-mode t)
+(setq evil-normal-state-cursor '("orange" hollow)
+      evil-insert-state-cursor '("orange" box)
+      evil-visual-state-cursor '("green" hollow))
 
 (blink-cursor-mode 0)
 
@@ -78,7 +89,7 @@
 
 ;;; theme stuff
 
-(load-theme 'solarized-dark t) ;https://github.com/bbatsov/solarized-emacs
+(load-theme 'solarized-light t) ;https://github.com/bbatsov/solarized-emacs
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
@@ -89,6 +100,12 @@
 ;;; ide settings
 
 (setq-default indent-tabs-mode nil)
+
+;; c
+(setq-default c-basic-offset 2)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'clang-format-buffer)))
 
 ;; clojure
 ;; (add-hook 'clojure-mode-hook #'enable-paredit-mode)  ; package clojure-mode
