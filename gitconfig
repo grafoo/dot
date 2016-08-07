@@ -7,3 +7,6 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	st = status
 	adda = add --all
+	ci = commit
+	ca = commit -a
+	ps = push
