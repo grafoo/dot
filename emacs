@@ -104,8 +104,13 @@
 ;; c
 (setq-default c-basic-offset 2)
 (add-hook 'c-mode-common-hook
-          (lambda ()
-            (add-hook 'before-save-hook 'clang-format-buffer)))
+          '(lambda ()
+             (add-hook 'before-save-hook
+                       '(lambda ()
+                          (when
+                              (or (eq major-mode 'c-mode)
+                                  (eq major-mode 'c++-mode))
+                            (clang-format-buffer))))))
 
 ;; clojure
 ;; (add-hook 'clojure-mode-hook #'enable-paredit-mode)  ; package clojure-mode
@@ -150,6 +155,11 @@
 ;; python
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+
+;; build systems
+;; scons
+(add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
+(add-to-list 'auto-mode-alist '("SConscript" . python-mode))
 
 ;; orgmode
 (setq org-html-postamble nil)
