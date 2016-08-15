@@ -7,6 +7,7 @@ alias la='ls -al --color=auto'
 alias lt='ls -thl --color=auto'
 alias lr='ls -rhl --color=auto'
 
+# use virtualenv of python2 when on archlinux
 which virtualenv2 >/dev/null 2>&1 && alias virtualenv='virtualenv2'
 
 alias emacs='emacs --no-window-system'
