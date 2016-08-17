@@ -23,6 +23,7 @@ call plug#end()
 autocmd FileType gitcommit setlocal formatoptions+=t textwidth=72
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 
 "
@@ -31,9 +32,9 @@ autocmd FileType gitconfig setlocal noexpandtab
 
 " tabs vs spaces
 set expandtab " insert space characters whenever the tab key is pressed
-set tabstop=4 " number of space characters that will be inserted when the tab key is pressed
-set shiftwidth=4 " number of space characters inserted for indentation
-set softtabstop=4 " makes the backspace key treat four spaces like a tab
+set tabstop=2 " number of space characters that will be inserted when the tab key is pressed
+set shiftwidth=2 " number of space characters inserted for indentation
+set softtabstop=2 " makes the backspace key treat four spaces like a tab
 set backspace=indent,eol,start
 filetype plugin indent on
 vnoremap < <gv
