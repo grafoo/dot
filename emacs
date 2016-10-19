@@ -163,3 +163,11 @@
 
 ;; orgmode
 (setq org-html-postamble nil)
+
+(winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
+
+;; move between windows with hjkl
+(global-set-key (kbd "C-S-h")  'windmove-left)
+(global-set-key (kbd "C-S-j")  'windmove-down)
+(global-set-key (kbd "C-S-k")    'windmove-up)
+(global-set-key (kbd "C-S-l") 'windmove-right)
