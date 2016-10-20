@@ -156,6 +156,8 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+
 ;; build systems
 ;; scons
 (add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
