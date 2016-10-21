@@ -31,7 +31,8 @@
     go-autocomplete
     go-eldoc
     flycheck
-    clang-format))
+    clang-format
+    py-autopep8))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -50,13 +51,19 @@
 
 ;;; editor/ui settings
 
+(blink-cursor-mode 0)
+
 ;; vim keybindings ftw
 (evil-mode t)
 (setq evil-normal-state-cursor '("orange" hollow)
       evil-insert-state-cursor '("orange" box)
       evil-visual-state-cursor '("green" hollow))
 
-(blink-cursor-mode 0)
+;; deactivate vim keybindings in insert mode
+;https://gist.github.com/kidd/1828878
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
+
 
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
