@@ -8,6 +8,7 @@ fi
 # editor
 export EDITOR=/usr/bin/vim
 export PAGER=/usr/bin/less
+export TERMINAL=/bin/terminator
 
 # go
 export GOROOT="$HOME/app/go"
@@ -22,3 +23,6 @@ export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin:$JAVA_HOME/bin:$PATH"
 # language
 # see /usr/share/locale/locale.alias for options
 export LANG=en_US.UTF-8
+
+# dot files
+export DOT_FILES_DIR="$HOME/dot"
