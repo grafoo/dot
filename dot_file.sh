@@ -10,6 +10,7 @@ make_lookup_table() {
     ["emacs"]=".emacs"
     ["gitconfig"]=".gitconfig"
     ["profile"]=".profile"
+    ["terminator"]=".config/terminator/config"
     ["tmux.conf"]=".tmux.conf"
     ["vim/vimrc"]=".vimrc"
     ["vim/vimrc_plugins"]=".vimrc_plugins"

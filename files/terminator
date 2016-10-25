@@ -1,0 +1,33 @@
+[global_config]
+  tab_position = hidden
+[keybindings]
+  next_tab = <Primary><Shift>n
+  go_up = <Primary><Shift>k
+  close_window = None
+  go_prev = None
+  new_window = None
+  prev_tab = <Primary><Shift>p
+  go_down = <Primary><Shift>j
+  close_term = None
+  split_vert = <Primary><Shift>i
+  go_right = <Primary><Shift>l
+  go_next = None
+  go_left = <Primary><Shift>h
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_image = None
+    foreground_color = "#00ff00"
+    show_titlebar = False
+    font = mononoki 11
+    cursor_blink = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
