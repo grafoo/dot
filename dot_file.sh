@@ -4,16 +4,22 @@ make_lookup_table() {
   # simultatinous declaring as global and assigning will not work in bash 4.2
   # therefore this odd looking declaration is needed
   declare -Ag lookup_table; lookup_table=(
+    ["asoundrc"]=".asoundrc"
+    ["bash_logout"]=".bash_logout"
     ["bash_profile"]=".bash_profile"
     ["bashrc"]=".bashrc"
     ["conky.conf"]=".config/conky/conky.conf"
     ["emacs"]=".emacs"
     ["gitconfig"]=".gitconfig"
+    ["jackdrc"]=".jackdrc"
+    ["lein/profiles.clj"]=".lein/profiles.clj"
     ["profile"]=".profile"
+    ["psqlrc"]=".profile"
     ["terminator"]=".config/terminator/config"
     ["tmux.conf"]=".tmux.conf"
     ["vim/vimrc"]=".vimrc"
     ["vim/vimrc_plugins"]=".vimrc_plugins"
+    ["xinitrc"]=".xinitrc"
   )
 }
 
