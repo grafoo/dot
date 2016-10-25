@@ -1,10 +1,18 @@
 #! /usr/bin/env bash
 
 make_lookup_table() {
-  declare -Ag lookup_table=(
+  # simultatinous declaring as global and assigning will not work in bash 4.2
+  # therefore this odd looking declaration is needed
+  declare -Ag lookup_table; lookup_table=(
+    ["bash_profile"]=".bash_profile"
+    ["bashrc"]=".bashrc"
     ["conky.conf"]=".config/conky/conky.conf"
+    ["emacs"]=".emacs"
     ["gitconfig"]=".gitconfig"
+    ["profile"]=".profile"
+    ["tmux.conf"]=".tmux.conf"
     ["vim/vimrc"]=".vimrc"
+    ["vim/vimrc_plugins"]=".vimrc_plugins"
   )
 }
 
