@@ -17,3 +17,6 @@ alias emd='emacs --daemon'
 alias emc='emacsclient -nw'
 
 PS1='[\u@\h \W]\$ '
+
+# replace the bash process with fish if available
+#$(which fish > /dev/null 2>&1) && exec fish
