@@ -19,3 +19,5 @@
 stp/screenlayout.sh
 
 conky &
+
+rofi -key-run F2 &
