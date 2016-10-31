@@ -24,6 +24,7 @@ autocmd FileType gitcommit setlocal formatoptions+=t textwidth=72
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitconfig setlocal noexpandtab
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType go setlocal nolist
 
 
 "
@@ -67,3 +68,17 @@ set listchars=tab:┌-,trail:·
 
 set background=light
 
+" having a directory like this
+".
+"└── foo
+"    ├── bar
+"    │   ├── baz
+"    │   │   └── zwap.c
+"    │   └── whack.py
+"    └── bonk.md:
+" path+=** will enable recursive searching and find the file zwap.c
+" when the search was issued like `:find *.c`
+set path+=**
+
+" enable a tab browseable menu when multiple matches for e.g. a file where found
+set wildmenu
