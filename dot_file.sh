@@ -4,6 +4,7 @@ make_lookup_table() {
   # simultatinous declaring as global and assigning will not work in bash 4.2
   # therefore this odd looking declaration is needed
   declare -Ag lookup_table; lookup_table=(
+    ["Xresources"]=".Xresources"
     ["asoundrc"]=".asoundrc"
     ["bash_logout"]=".bash_logout"
     ["bash_profile"]=".bash_profile"
@@ -57,6 +58,8 @@ enable_file() {
   test -f "${files_dir}/${f}" || exit 1
   make_lookup_table
   declare -r dot_file="${lookup_table[${f}]}"
+  declare -r dot_file_dir=$(echo "${HOME}/${dot_file}" | awk -F "/" '{for(i=2; i<NF; i++) printf ("/%s",$i)}')
+  test -d "$dot_file_dir" || mkdir "$dot_file_dir"
   echo "enabling ${dot_file}"
   ln -s "${files_dir}/${f}" "${HOME}/${dot_file}"
 }
