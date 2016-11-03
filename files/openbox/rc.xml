@@ -396,6 +396,12 @@
     </action>
   </keybind>
 
+  <!-- lock screen -->
+  <keybind key="C-A-l">
+    <action name="Execute">
+      <command>xscreensaver-command -lock</command>
+    </action>
+  </keybind>
 </keyboard>
 
 <mouse>
