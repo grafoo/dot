@@ -2,10 +2,19 @@
 [[ $- != *i* ]] && return
 
 simple_ls_long() {
-  ls --color -l $1 | awk 'NR > 1 {print $1 " " $(NF)}'
+  ls --color -l "$1" | awk 'NR > 1 {
+                              printf("%s ", $1);
+                              for(i=9;i<=NF;i++) {
+                                if(i==NF) {
+                                  print $i
+                                } else {
+                                  printf("%s ", $i)
+                                }
+                              }
+                            }'
 }
 
-alias l=simple_ls_long $1
+alias l="simple_ls_long $1"
 alias ll='ls --color -l'
 alias la='ls --color -la'
 alias lt='ls --color -lth'
