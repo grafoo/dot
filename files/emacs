@@ -20,7 +20,6 @@
 (defvar my-packages
   '(evil
     linum-relative
-    solarized-theme
     org-bullets
     ;; paredit
     ;; clojure-mode
@@ -32,7 +31,9 @@
     go-eldoc
     flycheck
     clang-format
-    py-autopep8))
+    py-autopep8
+    dark-mint-theme
+    leuven-theme))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -93,10 +94,13 @@
                                  (interactive)
                                  (switch-to-buffer (other-buffer))))
 
+(setq-default show-trailing-whitespace t)
+
 
 ;;; theme stuff
 
-(load-theme 'solarized-light t) ;https://github.com/bbatsov/solarized-emacs
+(setq leuven-scale-outline-headlines nil)
+(load-theme 'leuven t)
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
@@ -180,17 +184,3 @@
 (global-set-key (kbd "C-S-j")  'windmove-down)
 (global-set-key (kbd "C-S-k")    'windmove-up)
 (global-set-key (kbd "C-S-l") 'windmove-right)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (py-autopep8 clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets solarized-theme linum-relative evil))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
