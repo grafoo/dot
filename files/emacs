@@ -147,6 +147,10 @@
 
 (setq css-indent-offset 2)
 
+(setq
+ sh-basic-offset 2
+ sh-indentation 2)
+
 ;; go-mode
 (setq gofmt-command "goimports") ;https://godoc.org/golang.org/x/tools/cmd/goimports
 (add-hook 'before-save-hook 'gofmt-before-save)
