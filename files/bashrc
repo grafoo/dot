@@ -1,20 +1,62 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-simple_ls_long() {
-  ls --color -l "$1" | awk 'NR > 1 {
-                              printf("%s ", $1);
-                              for(i=9;i<=NF;i++) {
-                                if(i==NF) {
-                                  print $i
-                                } else {
-                                  printf("%s ", $i)
-                                }
-                              }
-                            }'
+l() {
+  case "$#" in
+    0)
+      ls --color -l | \
+        awk '
+          NR > 1 {
+            printf("%s ", $1)
+            for(i = 9; i <= NF; i++) {
+              if(i == NF) {
+                print $i
+              } else {
+                printf("%s ", $i)
+              }
+            }
+          }
+        '
+      ;;
+    1)
+      ls --color -l "$1" | \
+        awk '
+          NR > 1 {
+            printf("%s ", $1)
+            for(i = 9; i <= NF; i++) {
+              if(i == NF) {
+                print $i
+              } else {
+                printf("%s ", $i)
+              }
+            }
+          }
+        '
+      ;;
+    *)
+      declare arg
+      for arg in "$@"
+      do
+        echo "-> ${arg}"
+        ls --color -l "$arg" | \
+          awk '
+            NR > 1 {
+              printf(" %s ", $1)
+              for(i = 9; i <= NF; i++) {
+                if(i == NF) {
+                  print $i
+                } else {
+                  printf("%s ", $i)
+                }
+              }
+            }
+            END { printf("\n") }
+          '
+      done
+      ;;
+  esac
 }
-
-alias l="simple_ls_long $1"
+export -f l
 alias ll='ls --color -l'
 alias la='ls --color -la'
 alias lt='ls --color -lth'
