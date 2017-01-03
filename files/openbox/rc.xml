@@ -355,13 +355,13 @@
   <!-- Keybindings for running applications -->
   <keybind key="W-q">
     <action name="Execute">
-      <command>run_or_raise.sh terminator.Terminator</command>
+      <command>run_or_raise.sh xfce4-terminal.Xfce4-terminal</command>
     </action>
   </keybind>
 
   <keybind key="W-w">
     <action name="Execute">
-      <command>run_or_raise.sh Navigator.Firefox</command>
+      <command>run_or_raise.sh chromium-browser.Chromium-browser</command>
     </action>
   </keybind>
 
