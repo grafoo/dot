@@ -46,7 +46,6 @@ vnoremap > >gv
 " LINENUMBERS
 "
 
-set number
 set relativenumber
 
 
