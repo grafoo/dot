@@ -1,6 +1,25 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+aliases=(
+  l
+  ll
+  la
+  lt
+  lr
+  rr
+  virtualenv
+  emacs
+  emd
+  emc
+)
+
+for a in "${aliases[@]}"
+do
+  unalias "$a" 2>/dev/null
+done
+
+unset l
 l() {
   case "$#" in
     0)
@@ -63,6 +82,17 @@ alias lt='ls --color -lth'
 alias lr='ls --color -lrh'
 
 alias rr='rm -rf'
+
+unset xrpm
+xrpm() {
+  [[ "$1" =~ ^.*\.rpm$ ]] ||
+    exit 1
+  local rpm_dir="${1}.d"
+  mkdir "$rpm_dir"
+  cd "$rpm_dir"
+  rpm2cpio "../${1}" | cpio -idv
+}
+export -f xrpm
 
 # use virtualenv of python2 when on archlinux
 which virtualenv2 >/dev/null 2>&1 && alias virtualenv='virtualenv2'
