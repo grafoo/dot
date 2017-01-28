@@ -1,28 +1,44 @@
 # suse
-grep -qs "SUSE" /etc/issue
-if [ $? -eq 0 ]
-then
-  test -z "$PROFILEREAD" && source /etc/profile || true
-fi
+test -f /etc/issue &&
+  grep -qs "SUSE" /etc/issue &&
+  test -z "$PROFILEREAD" &&
+  source /etc/profile
 
-# editor
-export EDITOR=/usr/bin/vim
-export PAGER=/usr/bin/less
-export TERMINAL=/bin/terminator
+# env
+(which vim >/dev/null 2>&1) &&
+  unset EDITOR &&
+  export EDITOR=vim
+
+(which less >/dev/null 2>&1) &&
+  unset PAGER &&
+  export PAGER=less
+
+# not sure why TERMINAL was set
+#export TERMINAL=/bin/terminator
 
 # go
-export GOROOT="$HOME/app/go"
-export GOPATH="$HOME"
+test -d "${HOME}/app/go" &&
+  export GOROOT="${HOME}/app/go" &&
+  export PATH="${GOROOT}/bin:${PATH}" &&
+  export GOPATH="$HOME"
 
 # java
-test -d $HOME/app/jdk && export JAVA_HOME="$HOME/app/jdk"
+test -d "${HOME}/app/jdk" &&
+  export JAVA_HOME="${HOME}/app/jdk" &&
+  export PATH="${JAVA_HOME}/bin:${PATH}"
 
-# path
-export PATH="$HOME/bin:$HOME/.local/bin:$GOROOT/bin:$JAVA_HOME/bin:$PATH"
+# bin dirs
+test -d "${HOME}/.local/bin" &&
+  export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
+test -d "${HOME}/bin" &&
+  export PATH="${HOME}/bin:${PATH}"
 
 # language
 # see /usr/share/locale/locale.alias for options
-export LANG=en_US.UTF-8
+[ "$LANG" == "en_US.UTF-8" ] ||
+  unset LANG &&
+  export LANG="en_US.UTF-8"
 
 # dot files
-export DOT_FILES_DIR="$HOME/dot"
+test -d "${HOME}/dot" &&
+  export DOT_FILES_DIR="${HOME}/dot"

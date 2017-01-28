@@ -101,6 +101,15 @@ alias emacs='emacs --no-window-system'
 alias emd='emacs --daemon'
 alias emc='emacsclient -nw'
 
+nx() {
+  case "$1" in
+    -s)
+      nix-env -qaP ".*${2}.*"
+      ;;
+  esac
+}
+export -f nx
+
 PS1='\h \W> '
 
 # replace the bash process with fish if available
