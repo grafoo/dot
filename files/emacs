@@ -33,7 +33,9 @@
     clang-format
     py-autopep8
     dark-mint-theme
-    leuven-theme))
+    leuven-theme
+    magit
+    evil-magit))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -108,8 +110,10 @@
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
+;; (add-to-list 'default-frame-alist
+;;              '(font . "mononoki-11"))
 (add-to-list 'default-frame-alist
-             '(font . "mononoki-11"))
+             '(font . "Noto Mono-11"))
 
 
 ;;; ide settings
@@ -198,3 +202,20 @@
 (global-set-key (kbd "M-o") 'split-window-vertically)
 
 (global-set-key (kbd "M-1") 'delete-other-windows)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (leuven-theme dark-mint-theme py-autopep8 clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

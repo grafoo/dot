@@ -59,7 +59,7 @@ enable_file() {
   make_lookup_table
   declare -r dot_file="${lookup_table[${f}]}"
   declare -r dot_file_dir=$(echo "${HOME}/${dot_file}" | awk -F "/" '{for(i=2; i<NF; i++) printf ("/%s",$i)}')
-  test -d "$dot_file_dir" || mkdir "$dot_file_dir"
+  test -d "$dot_file_dir" || mkdir -p "$dot_file_dir"
   echo "enabling ${dot_file}"
   ln -s "${files_dir}/${f}" "${HOME}/${dot_file}"
 }
