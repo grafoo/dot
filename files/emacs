@@ -33,7 +33,9 @@
     clang-format
     py-autopep8
     dark-mint-theme
-    leuven-theme))
+    leuven-theme
+    magit
+    evil-magit))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -176,6 +178,9 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
+;; cuda
+(add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
+
 (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 ;; build systems
@@ -185,6 +190,8 @@
 
 ;; orgmode
 (setq org-html-postamble nil)
+(setq org-agenda-files '("~/tsk"))
+
 
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
 
@@ -198,3 +205,5 @@
 (global-set-key (kbd "M-o") 'split-window-vertically)
 
 (global-set-key (kbd "M-1") 'delete-other-windows)
+
+(global-set-key (kbd "C-c g") 'magit-status)
