@@ -355,7 +355,7 @@
   <!-- Keybindings for running applications -->
   <keybind key="W-q">
     <action name="Execute">
-      <command>run_or_raise.sh terminator.Terminator</command>
+      <command>run_or_raise.sh xfce4-terminal.Xfce4-terminal</command>
     </action>
   </keybind>
 
