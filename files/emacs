@@ -71,7 +71,6 @@
 
 (define-key evil-visual-state-map (kbd "TAB") 'tab-to-tab-stop)
 
-
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
@@ -101,6 +100,7 @@
                                  (switch-to-buffer (other-buffer))))
 
 (setq-default show-trailing-whitespace t)
+(setq-default truncate-lines nil)
 
 
 ;;; theme stuff
@@ -112,8 +112,10 @@
 
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "mononoki-11"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Noto Mono-11"))
 (add-to-list 'default-frame-alist
-             '(font . "Noto Mono-11"))
+             '(font . "Iosevka-11"))
 
 
 ;;; ide settings
@@ -198,17 +200,52 @@
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
 
 ;; move between windows with hjkl
-(global-set-key (kbd "M-h")  'windmove-left)
-(global-set-key (kbd "M-j")  'windmove-down)
-(global-set-key (kbd "M-k")    'windmove-up)
-(global-set-key (kbd "M-l") 'windmove-right)
+;; (global-set-key (kbd "M-h")  'windmove-left)
+;; (global-set-key (kbd "M-j")  'windmove-down)
+;; (global-set-key (kbd "M-k")    'windmove-up)
+;; (global-set-key (kbd "M-l") 'windmove-right)
 
-(global-set-key (kbd "M-i") 'split-window-horizontally)
-(global-set-key (kbd "M-o") 'split-window-vertically)
+;; (global-set-key (kbd "M-i") 'split-window-horizontally)
+;; (global-set-key (kbd "M-o") 'split-window-vertically)
 
-(global-set-key (kbd "M-1") 'delete-other-windows)
+;; (global-set-key (kbd "M-1") 'delete-other-windows)
+;; (global-set-key (kbd "M-0") 'delete-window)
 
-(global-set-key (kbd "C-x g") 'magit-status)
+;; (global-set-key (kbd "C-x g") 'magit-status)
+
+;; http://stackoverflow.com/questions/683425/globally-override-key-binding-in-emacs
+;; maybe checkout https://github.com/jwiegley/use-package as a better alternative
+;; using
+;;   (bind-keys*
+;;   ("C-o" . other-window)
+;;   ("C-M-n" . forward-page)
+;;   ("C-M-p" . backward-page))
+;; instead of the minor mode variant
+(defvar my-keys-map
+  (let ((map (make-sparse-keymap)))
+    ;; move between windows with hjkl
+    (define-key map (kbd "M-h") 'windmove-left)
+    (define-key map (kbd "M-j") 'windmove-down)
+    (define-key map (kbd "M-k") 'windmove-up)
+    (define-key map (kbd "M-l") 'windmove-right)
+
+    (define-key map (kbd "M-i") 'split-window-horizontally)
+    (define-key map (kbd "M-o") 'split-window-vertically)
+
+    (define-key map (kbd "M-1") 'delete-other-windows)
+    (define-key map (kbd "M-0") 'delete-window)
+
+    (define-key map (kbd "C-x g") 'magit-status)
+    map))
+(define-minor-mode my-keys
+  "A minor mode to override already assigned keys by other major/minor modes."
+  :init-value t)
+(my-keys t)
+
+(defun my-minibuffer-setup-hook ()
+  "Disable my-keys minor mode in minibuffer."
+  (my-keys nil))
+(add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
