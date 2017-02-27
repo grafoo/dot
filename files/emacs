@@ -31,11 +31,15 @@
     go-eldoc
     flycheck
     clang-format
-    py-autopep8
+    ;; py-autopep8
+    yapfify
     dark-mint-theme
     leuven-theme
     magit
-    evil-magit))
+    evil-magit
+    color-theme-sanityinc-tomorrow
+    doom-themes
+    haskell-mode))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -106,7 +110,9 @@
 ;;; theme stuff
 
 (setq leuven-scale-outline-headlines nil)
-(load-theme 'leuven t)
+;; (load-theme 'leuven t)
+;; (load-theme 'sanityinc-tomorrow-bright t)
+(load-theme 'doom-one t)
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
@@ -185,7 +191,8 @@
 ;; cuda
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
-(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+(add-hook 'python-mode-hook 'yapf-mode)
 
 ;; build systems
 ;; scons
@@ -195,6 +202,7 @@
 ;; orgmode
 (setq org-html-postamble nil)
 (setq org-agenda-files '("~/tsk"))
+(setq org-startup-truncated nil)
 
 
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
@@ -247,6 +255,8 @@
   (my-keys nil))
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -254,7 +264,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (leuven-theme dark-mint-theme py-autopep8 clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+    (haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
