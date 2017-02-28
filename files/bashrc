@@ -110,6 +110,13 @@ nx() {
 }
 export -f nx
 
+ldw() {
+  test -z "$1" &&
+    exit 1
+  ldd $(which "$1")
+}
+export -f ldw
+
 PS1='\h \W> '
 
 # replace the bash process with fish if available
