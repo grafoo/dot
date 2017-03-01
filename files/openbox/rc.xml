@@ -355,23 +355,24 @@
   <!-- Keybindings for running applications -->
   <keybind key="W-q">
     <action name="Execute">
-      <command>run_or_raise.sh xfce4-terminal.Xfce4-terminal</command>
+      <command>ror st.tabbed</command>
     </action>
   </keybind>
 
   <keybind key="W-w">
     <action name="Execute">
-      <command>run_or_raise.sh chromium-browser.Chromium-browser</command>
+      <!--<command>run_or_raise.sh chromium-browser.Chromium-browser</command>-->
+      <command>ror chromium.Chromium</command>
     </action>
   </keybind>
 
   <keybind key="W-e">
     <action name="Execute">
-      <command>run_or_raise.sh emacs.Emacs</command>
+      <command>ror emacs.Emacs</command>
     </action>
   </keybind>
 
-  <keybind key="F2">
+  <keybind key="W-space">
     <action name="Execute">
       <command>rofi -show run</command>
     </action>
