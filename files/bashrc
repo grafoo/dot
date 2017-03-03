@@ -12,6 +12,7 @@ aliases=(
   emacs
   emd
   emc
+  less
 )
 
 for a in "${aliases[@]}"
@@ -129,6 +130,8 @@ ldw() {
   ldd $(which "$1")
 }
 export -f ldw
+
+alias less='less --RAW-CONTROL-CHARS'
 
 start_ssh-agent
 
