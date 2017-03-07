@@ -85,18 +85,18 @@
   <separator />
   <item label="Log Out">
     <action name="Exit">
-      <prompt>yes</prompt>
+      <prompt>absolutely sure you want to logout?</prompt>
     </action>
   </item>
   <item label="Reboot">
     <action name="Execute">
-      <prompt>yes</prompt>
+      <prompt>absolutely sure you want to reboot?</prompt>
       <command>reboot</command>
     </action>
   </item>
   <item label="Poweroff">
     <action name="Execute">
-      <prompt>yes</prompt>
+      <prompt>absolutely sure you want to poweroff?</prompt>
       <command>poweroff</command>
     </action>
   </item>

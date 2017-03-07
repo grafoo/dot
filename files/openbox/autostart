@@ -16,7 +16,7 @@
 #
 #xfce-mcs-manager &
 
-stp/screenlayout.sh
-conky &
-rofi -key-run F2 &
-xscreensaver &
+#stp/screenlayout.sh
+#conky &
+#rofi -key-run F2 &
+#xscreensaver &
