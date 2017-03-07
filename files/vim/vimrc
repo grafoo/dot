@@ -65,7 +65,7 @@ syntax on
 set list
 set listchars=tab:┌-,trail:·
 
-set background=light
+set background=dark
 
 " having a directory like this
 ".

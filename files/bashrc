@@ -12,6 +12,10 @@ aliases=(
   emacs
   emd
   emc
+  less
+  ..
+  ...
+  grepp
 )
 
 for a in "${aliases[@]}"
@@ -129,6 +133,11 @@ ldw() {
   ldd $(which "$1")
 }
 export -f ldw
+
+alias less='less --RAW-CONTROL-CHARS'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias grepp='grep --color=auto --perl-regexp'
 
 start_ssh-agent
 
