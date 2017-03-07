@@ -6,7 +6,9 @@
 [alias]
 	lo = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	st = status
-	adda = add --all
+	ad = add
+	ada = add --all
+	co = checkout
 	ci = commit
 	ca = commit -a
 	ps = push
