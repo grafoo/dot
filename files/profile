@@ -17,8 +17,8 @@ test -f /etc/issue &&
 #export TERMINAL=/bin/terminator
 
 # go
-test -d "${HOME}/app/go" &&
-  export GOROOT="${HOME}/app/go" &&
+test -d "${HOME}/lng/go" &&
+  export GOROOT="${HOME}/lng/go" &&
   export PATH="${GOROOT}/bin:${PATH}" &&
   export GOPATH="$HOME"
 
