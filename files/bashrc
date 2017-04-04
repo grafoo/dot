@@ -115,16 +115,19 @@ nx() {
 export -f nx
 
 start_ssh-agent() {
-  test -S "/tmp/.ssh-agent.${USER}.sock" ||
-    eval $(ssh-agent -a "/tmp/.ssh-agent.${USER}.sock" -s)
+  (ssh-add -l > /dev/null 2>&1) ||
+    {
+      test -S "/tmp/.ssh-agent.${USER}.sock" ||
+        eval $(ssh-agent -a "/tmp/.ssh-agent.${USER}.sock" -s)
 
-  ssh-add -l >/dev/null 2>&1
-  test $? -eq 2 &&
-    export SSH_AUTH_SOCK="/tmp/.ssh-agent.${USER}.sock"
+      ssh-add -l > /dev/null 2>&1
+      test $? -eq 2 &&
+        export SSH_AUTH_SOCK="/tmp/.ssh-agent.${USER}.sock"
 
-  ssh-add -l >/dev/null 2>&1
-  test $? -eq 1 &&
-    ssh-add
+      ssh-add -l > /dev/null 2>&1
+      test $? -eq 1 &&
+        ssh-add
+    }
 }
 
 ldw() {
