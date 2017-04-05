@@ -23,15 +23,15 @@ test -d "${HOME}/lng/go" &&
   export GOPATH="$HOME"
 
 # java
-test -d "${HOME}/app/jdk" &&
-  export JAVA_HOME="${HOME}/app/jdk" &&
+test -d "${HOME}/lng/jdk" &&
+  export JAVA_HOME="${HOME}/lng/jdk" &&
   export PATH="${JAVA_HOME}/bin:${PATH}"
 
 # bin dirs
-test -d "${HOME}/.local/bin" &&
-  export PATH="${HOME}/bin:${HOME}/.local/bin:${PATH}"
 test -d "${HOME}/bin" &&
   export PATH="${HOME}/bin:${PATH}"
+test -d "${HOME}/.local/bin" &&
+  export PATH="${HOME}/.local/bin:${PATH}"
 
 # language
 # see /usr/share/locale/locale.alias for options
