@@ -76,6 +76,9 @@
 
 (define-key evil-visual-state-map (kbd "TAB") 'tab-to-tab-stop)
 
+(require 'evil-magit)
+(evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
+
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
@@ -110,7 +113,7 @@
 
 ;;; theme stuff
 
-(setq leuven-scale-outline-headlines nil)
+;; (setq leuven-scale-outline-headlines nil)
 ;; (load-theme 'leuven t)
 ;; (load-theme 'sanityinc-tomorrow-bright t)
 (load-theme 'doom-one t)
