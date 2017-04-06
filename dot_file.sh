@@ -12,6 +12,7 @@ make_lookup_table() {
     ["conky.conf"]=".config/conky/conky.conf"
     ["emacs"]=".emacs"
     ["gitconfig"]=".gitconfig"
+    ["index.theme"]=".icons/default/index.theme"
     ["jackdrc"]=".jackdrc"
     ["lein/profiles.clj"]=".lein/profiles.clj"
     ["openbox/autostart"]=".config/openbox/autostart"
