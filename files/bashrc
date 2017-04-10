@@ -137,6 +137,14 @@ ldw() {
 }
 export -f ldw
 
+dus() {
+  path="$1"
+  test $(echo "$path" | rev | cut -c 1) = / ||
+    path="${path}/"
+  du -sh "${path}"* | sort -h
+}
+export -f dus
+
 alias less='less --RAW-CONTROL-CHARS'
 alias ..='cd ..'
 alias ...='cd ../..'
