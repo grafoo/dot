@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+# needs a notification daemon (e.g. dunst)
+# nohup dunst -geometry x2+0+25 -lto 28800 -nto 28800 -cto 28800 -key F12 > /dev/null 2>&1 &
+
+event_type="$1"
+message_type="$2"
+
+case "$event_type" in
+  "MSG")
+    jid="$3"
+    case "$message_type" in
+      "IN")
+        notify-send "message from ${jid}"
+        ;;
+    esac
+    ;;
+esac
