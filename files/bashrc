@@ -87,8 +87,8 @@ alias lr='ls --color -lrh'
 
 alias rr='rm -rf'
 
-unset xrpm
-xrpm() {
+unset rpmx
+rpmx() {
   [[ "$1" =~ ^.*\.rpm$ ]] ||
     exit 1
   local rpm_dir="${1}.d"
@@ -96,7 +96,13 @@ xrpm() {
   cd "$rpm_dir"
   rpm2cpio "../${1}" | cpio -idv
 }
-export -f xrpm
+export -f rpmx
+
+rpmq() {
+  test -n "$1" &&
+    rpm -qa | grep "$1"
+}
+export -f rpmq
 
 # use virtualenv of python2 when on archlinux
 which virtualenv2 >/dev/null 2>&1 && alias virtualenv='virtualenv2'
