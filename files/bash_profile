@@ -1,7 +1,12 @@
-[[ -f ~/.profile ]] && . ~/.profile
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+test -f "${HOME}/.profile" &&
+  source "${HOME}/.profile"
+
+test -f "${HOME}/.bashrc" &&
+  source "${HOME}/.bashrc"
 
 # don't put duplicate lines or lines starting with space in the history
 export HISTCONTROL=ignoreboth
 
-[[ -z $DISPLAY && $(tty) == "/dev/tty1" ]] && exec startx
+test -z "$DISPLAY" &&
+  test $(tty) = "/dev/tty1" &&
+  exec startx
