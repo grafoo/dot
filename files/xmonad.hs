@@ -5,6 +5,7 @@ import XMonad.Layout.NoBorders (noBorders)
 import XMonad.Layout.ResizableTile  -- ResizableTall
 import XMonad.Actions.WindowBringer (gotoMenu, bringMenu)
 import XMonad.Layout.Magnifier (maximizeVertical, MagnifyMsg(Toggle))
+import XMonad.Actions.GroupNavigation -- historyHook, nextMatch
 
 
 main :: IO ()
@@ -16,7 +17,9 @@ main = do
     , layoutHook = desktopLayoutModifiers $
                    maximizeVertical
                    (ResizableTall 1 (1.5/100) (3/5) []) ||| (noBorders Full)
+    , logHook = historyHook
     } `additionalKeysP` [ ("M-i", sendMessage Toggle)
                         , ("M-g", gotoMenu) -- open dmenu and goto selected window
                         , ("M-b", bringMenu) -- open dmenu and bring selected window into current workspace
+                        , ("M-<Tab>", nextMatch History (return True)) -- open dmenu and bring selected window into current workspace
                         ]
