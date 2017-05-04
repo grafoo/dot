@@ -13,4 +13,7 @@ setxkbmap -layout de -variant nodeadkeys -option "caps:escape"
 #tpset "Evdev Wheel Emulation Axes" 6 7 4 5
 #tpset "Device Accel Constant Deceleration" 0.95
 
-exec openbox-session
+xsetroot -cursor_name left_ptr
+
+#exec openbox-session
+exec xmonad

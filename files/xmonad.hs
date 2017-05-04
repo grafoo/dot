@@ -19,8 +19,9 @@ main = do
                    maximizeVertical
                    (ResizableTall 1 (1.5/100) (3/5) []) ||| (noBorders Full)
     , logHook = historyHook
+    , focusFollowsMouse = False
     } `additionalKeysP` [ ("M-i", sendMessage Toggle)
                         , ("M-g", gotoMenu) -- open dmenu and goto selected window
                         , ("M-b", bringMenu) -- open dmenu and bring selected window into current workspace
-                        , ("M-<Tab>", nextMatch History (return True)) -- open dmenu and bring selected window into current workspace
+                        , ("M1-<Tab>", nextMatch History (return True)) -- open dmenu and bring selected window into current workspace
                         ]
