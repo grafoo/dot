@@ -11,7 +11,8 @@ import XMonad.Actions.GroupNavigation -- historyHook, nextMatch
 main :: IO ()
 main = do
   xmonad $ desktopConfig
-    { terminal = "st -f 'Iosevka-11'"
+    --{ terminal = "st -f 'Iosevka-11'"
+    { terminal = "urxvt -fn 'xft:Iosevka:size=11' -bg '#181E26' -fg '#98BE65'"
     , focusedBorderColor = "#00FF00"
     , modMask = mod4Mask        -- use windows key
     , layoutHook = desktopLayoutModifiers $
