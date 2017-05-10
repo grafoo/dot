@@ -40,7 +40,9 @@
     color-theme-sanityinc-tomorrow
     doom-themes
     haskell-mode
-    helm-pydoc))
+    helm
+    helm-pydoc
+    restclient))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -82,6 +84,7 @@
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+
 
 ;; line numbers
 (global-linum-mode)
@@ -266,6 +269,9 @@
 (require 'redminer)
 (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c r") #'redminer-insert-issue-as-org-link)))
 
+;; restclient
+(require 'restclient)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -274,7 +280,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+    (restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
