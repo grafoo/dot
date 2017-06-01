@@ -98,6 +98,7 @@ rpmx() {
 }
 export -f rpmx
 
+unset rpmq
 rpmq() {
   test -n "$1" &&
     rpm -qa | grep "$1"
@@ -111,6 +112,7 @@ alias emacs='emacs --no-window-system'
 alias emd='emacs --daemon'
 alias emc='emacsclient -nw'
 
+unset nx
 nx() {
   case "$1" in
     -s)
@@ -120,7 +122,7 @@ nx() {
 }
 export -f nx
 
-start_ssh-agent() {
+start_ssh_agent() {
   (ssh-add -l > /dev/null 2>&1) ||
     {
       test -S "/tmp/.ssh-agent.${USER}.sock" ||
@@ -136,6 +138,7 @@ start_ssh-agent() {
     }
 }
 
+unset ldw
 ldw() {
   test -z "$1" &&
     exit 1
@@ -143,6 +146,7 @@ ldw() {
 }
 export -f ldw
 
+unset dus
 dus() {
   path="$1"
   test $(echo "$path" | rev | cut -c 1) = / ||
@@ -151,12 +155,23 @@ dus() {
 }
 export -f dus
 
+unset ssh_master_exit_all
+ssh_master_exit_all() {
+  local _s
+  local _glob="${HOME}/.ssh/cmskt.*"
+  for _s in ~/.ssh/cmskt.*; do
+    test "$_s" != "$_glob" &&
+      ssh -O exit $(echo "$_s" | cut -d '.' -f 3- | cut -d '.' -f 2-)
+  done
+}
+export -f ssh_master_exit_all
+
 alias less='less --RAW-CONTROL-CHARS'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias grepp='grep --color=auto --perl-regexp'
 
-start_ssh-agent
+start_ssh_agent
 
 PS1='\h \W> '
 

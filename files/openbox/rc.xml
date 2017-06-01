@@ -247,11 +247,14 @@
   <!-- snap to left edge -->
   <keybind key="W-h">
     <action name="Unmaximize"></action>
+    <action name="Maximize">
+      <direction>vertical</direction>
+    </action>
     <action name="MoveResizeTo">
-      <x>0</x>
-      <y>0</y>
       <width>50%</width>
-      <height>100%</height>
+    </action>
+    <action name="MoveToEdge">
+      <direction>west</direction>
     </action>
   </keybind>
 
@@ -279,12 +282,15 @@
 
   <!-- snap to right edge -->
   <keybind key="W-l">
-    <action name="Unmaximize"></action>
+    <action name="Unmaximize"/>
+    <action name="Maximize">
+      <direction>vertical</direction>
+    </action>
     <action name="MoveResizeTo">
-      <x>50%</x>
-      <y>0</y>
       <width>50%</width>
-      <height>100%</height>
+    </action>
+    <action name="MoveToEdge">
+      <direction>east</direction>
     </action>
   </keybind>
 
@@ -361,8 +367,9 @@
 
   <keybind key="W-w">
     <action name="Execute">
-      <!--<command>run_or_raise.sh chromium-browser.Chromium-browser</command>-->
-      <command>ror chromium.Chromium</command>
+      <!-- <command>run_or_raise.sh chromium-browser.Chromium-browser</command> -->
+      <!-- <command>ror chromium.Chromium</command> -->
+      <command>ror Navigator.Firefox</command>
     </action>
   </keybind>
 
