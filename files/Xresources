@@ -1,1 +1,5 @@
 Xcursor.theme: core
+URxvt*scrollBar: false
+URxvt*font: xft:Iosevka:size=11
+URxvt*background: #181E26
+URxvt*foreground: #98BE65

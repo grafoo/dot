@@ -16,6 +16,10 @@ test -f /etc/issue &&
 # not sure why TERMINAL was set
 #export TERMINAL=/bin/terminator
 
+# rust
+test -d "${HOME}/.cargo" &&
+  export PATH="${HOME}/.cargo/bin:${PATH}"
+
 # go
 test -d "${HOME}/lng/go" &&
   export GOROOT="${HOME}/lng/go" &&
@@ -35,9 +39,11 @@ test -d "${HOME}/.local/bin" &&
 
 # language
 # see /usr/share/locale/locale.alias for options
-[ "$LANG" == "en_US.UTF-8" ] ||
-  unset LANG &&
-  export LANG="en_US.UTF-8"
+test "$LANG" = "en_US.UTF-8" ||
+  {
+    unset LANG
+    export LANG="en_US.UTF-8"
+  }
 
 # dot files
 test -d "${HOME}/dot" &&
