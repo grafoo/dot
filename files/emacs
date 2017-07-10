@@ -42,7 +42,10 @@
     haskell-mode
     helm
     helm-pydoc
-    restclient))
+    restclient
+    rust-mode
+    flatui-theme
+    indent-guide))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -119,7 +122,8 @@
 ;; (setq leuven-scale-outline-headlines nil)
 ;; (load-theme 'leuven t)
 ;; (load-theme 'sanityinc-tomorrow-bright t)
-(load-theme 'doom-one t)
+;; (load-theme 'doom-one t)
+(load-theme 'flatui t)
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
@@ -203,6 +207,9 @@
 ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-hook 'python-mode-hook 'yapf-mode)
 
+;; rust
+(setq rust-format-on-save t)
+
 ;; build systems
 ;; scons
 (add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
@@ -280,7 +287,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+    (rust-mode flatui-theme indent-guide restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
