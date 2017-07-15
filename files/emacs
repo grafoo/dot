@@ -195,7 +195,9 @@
 
 ;; python
 (add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
+(add-hook 'python-mode-hook (lambda ()
+                              (setq jedi:complete-on-dot t
+                                    jedi:key-goto-definition (kbd "C-c ."))))
 
 ;; https://github.com/robert-zaremba/auto-virtualenvwrapper.el
 (require 'auto-virtualenvwrapper)
@@ -216,7 +218,6 @@
 (setq org-html-postamble nil)
 (setq org-agenda-files '("~/tsk"))
 (setq org-startup-truncated nil)
-
 
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
 
@@ -268,6 +269,11 @@
   (my-keys nil))
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 
+
+;; redminer
+(add-to-list 'load-path "~/prj/redminer")
+(require 'redminer)
+(add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c r") #'redminer-insert-issue-as-org-link)))
 
 ;; restclient
 (require 'restclient)
