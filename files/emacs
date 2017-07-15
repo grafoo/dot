@@ -41,7 +41,9 @@
     doom-themes
     haskell-mode
     helm
-    helm-pydoc))
+    helm-pydoc
+    restclient
+    auto-virtualenvwrapper))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -118,7 +120,8 @@
 ;; (setq leuven-scale-outline-headlines nil)
 ;; (load-theme 'leuven t)
 ;; (load-theme 'sanityinc-tomorrow-bright t)
-(load-theme 'doom-one t)
+;; (load-theme 'doom-one t)
+(load-theme 'flatui t)
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
@@ -194,6 +197,10 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
+;; https://github.com/robert-zaremba/auto-virtualenvwrapper.el
+(require 'auto-virtualenvwrapper)
+(add-hook 'python-mode-hook #'auto-virtualenvwrapper-activate)
+
 ;; cuda
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
@@ -265,6 +272,7 @@
 ;; restclient
 (require 'restclient)
 
+(ido-mode t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -273,10 +281,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))
+    (auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))

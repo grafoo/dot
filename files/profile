@@ -27,6 +27,11 @@ test -d "${HOME}/lng/jdk" &&
   export JAVA_HOME="${HOME}/lng/jdk" &&
   export PATH="${JAVA_HOME}/bin:${PATH}"
 
+# ocaml
+test -f "${HOME}/.opam/opam-init/init.sh" &&
+  . "${HOME}/.opam/opam-init/init.sh" 2>&1 /dev/null ||
+  true
+
 # bin dirs
 test -d "${HOME}/bin" &&
   export PATH="${HOME}/bin:${PATH}"
