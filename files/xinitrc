@@ -14,6 +14,6 @@ setxkbmap -layout de -variant nodeadkeys -option "caps:escape"
 #tpset "Device Accel Constant Deceleration" 0.95
 
 xsetroot -cursor_name left_ptr
-
-#exec openbox-session
-exec xmonad
+xrdb -merge "${HOME}/.Xresources"
+exec openbox-session
+#exec xmonad

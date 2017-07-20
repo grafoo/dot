@@ -7,6 +7,13 @@ test -f "${HOME}/.bashrc" &&
 # don't put duplicate lines or lines starting with space in the history
 export HISTCONTROL=ignoreboth
 
+# do not truncate history
+export HISTFILESIZE=-1
+export HISTSIZE=-1
+
+# see man 3 strftime for options
+HISTTIMEFORMAT='%F %T '
+
 test -z "$DISPLAY" &&
   test $(tty) = "/dev/tty1" &&
   exec startx
