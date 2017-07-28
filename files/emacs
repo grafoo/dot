@@ -201,6 +201,7 @@
 (add-hook 'python-mode-hook (lambda ()
                               (setq jedi:complete-on-dot t
                                     jedi:key-goto-definition (kbd "C-c ."))))
+(setq gud-pdb-command-name "python -m pdb")
 
 ;; https://github.com/robert-zaremba/auto-virtualenvwrapper.el
 (require 'auto-virtualenvwrapper)
@@ -296,10 +297,16 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rust-mode flatui-theme indent-guide restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+    (auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))
+ )
