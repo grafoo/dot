@@ -276,15 +276,18 @@
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 
 
-;; redminer
-(add-to-list 'load-path "~/prj/redminer")
-(require 'redminer)
-(add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c r") #'redminer-insert-issue-as-org-link)))
+;; ;; redminer
+;; (add-to-list 'load-path "~/prj/redminer")
+;; (require 'redminer)
+;; (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c r") #'redminer-insert-issue-as-org-link)))
 
 ;; restclient
 (require 'restclient)
 
-(ido-mode t)
+;; helm
+(require 'helm)
+(helm-mode t)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
