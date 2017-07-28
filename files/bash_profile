@@ -8,8 +8,16 @@ test -f "${HOME}/.bashrc" &&
 export HISTCONTROL=ignoreboth
 
 # do not truncate history
-export HISTFILESIZE=-1
-export HISTSIZE=-1
+if [ $(bash --version|awk 'NR == 1 {print $4}'|cut -d '.' -f 2) -ge 3 ]; then
+  export HISTFILESIZE=-1
+  export HISTSIZE=-1
+else
+  # bash 4.2 will crash when HISTFILESIZE/HISTSIZE are set to -1
+  # but assigning an empty string should also result in unstifling
+  # see http://git.savannah.gnu.org/cgit/bash.git/tree/variables.c?h=bash-4.2#n4443
+  export HISTFILESIZE=""
+  export HISTSIZE=""
+fi
 
 # see man 3 strftime for options
 HISTTIMEFORMAT='%F %T '
