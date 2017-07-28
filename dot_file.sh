@@ -26,6 +26,8 @@ make_lookup_table() {
     ["vim/vimrc"]=".vimrc"
     ["vim/vimrc_plugins"]=".vimrc_plugins"
     ["xinitrc"]=".xinitrc"
+    ["gtkrc-2.0"]=".gtkrc-2.0"
+    ["gtk-3.0_settings.ini"]=".config/gtk-3.0/settings.ini"
   )
 }
 
@@ -61,6 +63,8 @@ enable_file() {
   declare -r dot_file="${lookup_table[${f}]}"
   declare -r dot_file_dir=$(echo "${HOME}/${dot_file}" | awk -F "/" '{for(i=2; i<NF; i++) printf ("/%s",$i)}')
   test -d "$dot_file_dir" || mkdir -p "$dot_file_dir"
+  test "$dot_file_dir" = "${HOME}/.config/gtk-3.0" &&
+    chmod 700 "$dot_file_dir"
   echo "enabling ${dot_file}"
   ln -s "${files_dir}/${f}" "${HOME}/${dot_file}"
 }
@@ -111,3 +115,5 @@ case "$1" in
 esac
 
 exit 0
+
+
