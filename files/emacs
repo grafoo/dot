@@ -1,8 +1,7 @@
-;
-;
-; general
+;;; general
 
 (setq ring-bell-function 'ignore)
+(setq inhibit-startup-message t)        ;disable startup message
 
 
 ;;; packages
@@ -44,6 +43,9 @@
     helm-pydoc
     restclient
     rust-mode
+    flycheck-rust
+    racer
+    company
     flatui-theme
     indent-guide
     auto-virtualenvwrapper))
@@ -69,14 +71,23 @@
 
 (blink-cursor-mode 0)
 
-;; vim keybindings ftw
+;; disable all kinds of bars
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
+(menu-bar-mode -1)
+
+
+;;; evil - vim keybindings ftw
+
 (evil-mode t)
 (setq evil-normal-state-cursor '("orange" hollow)
       evil-insert-state-cursor '("orange" box)
       evil-visual-state-cursor '("green" hollow))
 
 ;; deactivate vim keybindings in insert mode
-;https://gist.github.com/kidd/1828878
+;; https://gist.github.com/kidd/1828878
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
@@ -100,14 +111,7 @@
 (electric-pair-mode t)     ;auto close characters like e.g. brackets
 (show-paren-mode 1)        ;show matching pairs of enclosing characters
 
-;; disable all kinds of bars
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
-(menu-bar-mode -1)
 
-(setq inhibit-startup-message t)        ;disable startup message
 
 ;; switch to last used buffer
 (global-set-key (kbd "C-c b") '(lambda ()
@@ -201,6 +205,7 @@
 (add-hook 'python-mode-hook (lambda ()
                               (setq jedi:complete-on-dot t
                                     jedi:key-goto-definition (kbd "C-c ."))))
+
 (setq gud-pdb-command-name "python -m pdb")
 
 ;; https://github.com/robert-zaremba/auto-virtualenvwrapper.el
@@ -213,15 +218,39 @@
 ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 (add-hook 'python-mode-hook 'yapf-mode)
 
-;; rust
+
+;;; rust
+
+;; racer installation:
+;; rustup component add rust-src
+;; cargo install racer
+
+;; rustfmt installation:
+;; cargo install rustfmt
+
 (setq rust-format-on-save t)
 
-;; build systems
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+
+(define-key racer-mode-map (kbd "C-c .") #'racer-find-definition)
+(define-key racer-mode-map (kbd "C-c ?") #'racer-describe)
+
+
+;;; build systems
+
 ;; scons
 (add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
 (add-to-list 'auto-mode-alist '("SConscript" . python-mode))
 
-;; orgmode
+
+;;; orgmode
 (setq org-html-postamble nil)
 (setq org-agenda-files '("~/tsk"))
 (setq org-startup-truncated nil)
@@ -290,6 +319,8 @@
 (helm-mode t)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
+(indent-guide-global-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -297,7 +328,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+    (company racer flycheck-rust auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
