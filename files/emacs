@@ -18,6 +18,7 @@
 
 (defvar my-packages
   '(evil
+    elpy
     linum-relative
     org-bullets
     ;; paredit
@@ -40,7 +41,7 @@
     doom-themes
     haskell-mode
     helm
-    helm-pydoc
+    ;; helm-pydoc
     restclient
     rust-mode
     flycheck-rust
@@ -136,8 +137,12 @@
 ;;              '(font . "mononoki-11"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Noto Mono-11"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Iosevka-11"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Fixedsys Excelsior-12"))
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka-11"))
+             '(font . "Anonymous Pro-12"))
 
 
 ;;; ide settings
@@ -200,23 +205,33 @@
 ;; flycheck
 (global-flycheck-mode)
 
-;; python
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook (lambda ()
-                              (setq jedi:complete-on-dot t
-                                    jedi:key-goto-definition (kbd "C-c ."))))
+
+;;; python
 
 (setq gud-pdb-command-name "python -m pdb")
 
+(elpy-enable)
+;; (add-hook 'elpy-mode-hook (lambda ()
+;;                             (add-hook 'before-save-hook 'elpy-format-code)))
+
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (add-hook 'python-mode-hook (lambda ()
+;;                               (setq jedi:complete-on-dot t
+;;                                     jedi:key-goto-definition (kbd "C-c .")
+;;                                     jedi:complete (kbd "C-tab"))))
+
+
 ;; https://github.com/robert-zaremba/auto-virtualenvwrapper.el
-(require 'auto-virtualenvwrapper)
-(add-hook 'python-mode-hook #'auto-virtualenvwrapper-activate)
+;(require 'auto-virtualenvwrapper)
+;(add-hook 'python-mode-hook #'auto-virtualenvwrapper-activate)
+
+
+;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
+;(add-hook 'python-mode-hook 'yapf-mode)
+
 
 ;; cuda
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
-
-;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-(add-hook 'python-mode-hook 'yapf-mode)
 
 
 ;;; rust
@@ -316,7 +331,6 @@
 (require 'restclient)
 
 ;; helm
-(require 'helm)
 (helm-mode t)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
@@ -343,6 +357,10 @@
 ;; (setq user-mail-address "firstname.lastname@example.tld")
 (load "~/.myemail")
 
+(require 'org-mu4e)
+
+
+
 
 ;;; easypg
 ;; save a file called .authinfo.gpg with following content
@@ -352,6 +370,35 @@
 ;; use the cached passphrase afterwards
 (epa-file-enable)
 
+;; https://www.emacswiki.org/emacs/ToggleWindowSplit
+(defun toggle-window-split ()
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+	     (next-win-buffer (window-buffer (next-window)))
+	     (this-win-edges (window-edges (selected-window)))
+	     (next-win-edges (window-edges (next-window)))
+	     (this-win-2nd (not (and (<= (car this-win-edges)
+					 (car next-win-edges))
+				     (<= (cadr this-win-edges)
+					 (cadr next-win-edges)))))
+	     (splitter
+	      (if (= (car this-win-edges)
+		     (car (window-edges (next-window))))
+		  'split-window-horizontally
+		'split-window-vertically)))
+	(delete-other-windows)
+	(let ((first-win (selected-window)))
+	  (funcall splitter)
+	  (if this-win-2nd (other-window 1))
+	  (set-window-buffer (selected-window) this-win-buffer)
+	  (set-window-buffer (next-window) next-win-buffer)
+	  (select-window first-win)
+	  (if this-win-2nd (other-window 1))))))
+
+(define-key ctl-x-4-map "t" 'toggle-window-split)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -359,7 +406,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company racer flycheck-rust auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
+    (elpy company racer flycheck-rust auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
