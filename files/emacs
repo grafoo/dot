@@ -1,3 +1,10 @@
+;;; .emacs --- silence flycheck
+
+;;; Commentary:
+;; ...where the magic is happening
+
+;;; Code:
+
 ;;; general
 
 (setq ring-bell-function 'ignore)
@@ -18,38 +25,45 @@
 
 (defvar my-packages
   '(evil
-    elpy
     linum-relative
+    ;; programming general
+    flycheck
+    indent-guide
+    ;;; python
+    elpy
+    ;; jedi
+    ;; helm-pydoc
+    ;; py-autopep8
+    ;; auto-virtualenvwrapper
+    ;;; org
     org-bullets
-    ;; paredit
-    ;; clojure-mode
-    ;; cider
-    jedi
+    ;;; go
     go-mode
-    auto-complete
     go-autocomplete
     go-eldoc
-    flycheck
+    ;; c/c++
     clang-format
-    ;; py-autopep8
     yapfify
+    ;;; themes
     dark-mint-theme
     leuven-theme
+    doom-themes
+    color-theme-sanityinc-tomorrow
+    flatui-theme
+    ;;; magit
     magit
     evil-magit
-    color-theme-sanityinc-tomorrow
-    doom-themes
-    haskell-mode
+    ;;; haskell
+    ;; haskell-mode
     helm
-    ;; helm-pydoc
     restclient
+    ;;; rust
     rust-mode
     flycheck-rust
     racer
+    ;;; autocompletion
     company
-    flatui-theme
-    indent-guide
-    auto-virtualenvwrapper))
+    auto-complete))
 
 (dolist (p my-packages)
   (unless (package-installed-p p)
@@ -68,6 +82,11 @@
 (global-auto-revert-mode t)             ;watch files for changes and auto revert matching buffer
 
 
+;;; complete
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+
 ;;; editor/ui settings
 
 (blink-cursor-mode 0)
@@ -80,7 +99,7 @@
 (menu-bar-mode -1)
 
 
-;;; evil - vim keybindings ftw
+;;; evil --- vim keybindings ftw
 
 (evil-mode t)
 (setq evil-normal-state-cursor '("orange" hollow)
@@ -99,7 +118,7 @@
 
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
 
 
 ;; line numbers
@@ -137,33 +156,34 @@
 ;;              '(font . "mononoki-11"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Noto Mono-11"))
-;; (add-to-list 'default-frame-alist
-;;              '(font . "Iosevka-11"))
+(add-to-list 'default-frame-alist
+             '(font . "Iosevka Term-12"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Fixedsys Excelsior-12"))
-(add-to-list 'default-frame-alist
-             '(font . "Anonymous Pro-12"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Anonymous Pro-12"))
 
 
 ;;; ide settings
 
 (setq-default indent-tabs-mode nil)
 
-;; c
+
+;;; c
+
 (setq-default c-basic-offset 2)
-(add-hook 'c-mode-common-hook
-          '(lambda ()
-             (add-hook 'before-save-hook
-                       '(lambda ()
-                          (when
-                              (or (eq major-mode 'c-mode)
-                                  (eq major-mode 'c++-mode))
-                            (clang-format-buffer))))))
+;; (add-hook 'c-mode-common-hook
+;;           '(lambda ()
+;;              (add-hook 'before-save-hook
+;;                        '(lambda ()
+;;                           (when
+;;                               (or (eq major-mode 'c-mode)
+;;                                   (eq major-mode 'c++-mode))
+;;                             (clang-format-buffer))))))
 
-;; clojure
-;; (add-hook 'clojure-mode-hook #'enable-paredit-mode)  ; package clojure-mode
 
-;; elisp
+;;; elisp
+
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             ;; #'enable-paredit-mode
@@ -189,7 +209,9 @@
              sh-indentation 2
              sh-basic-offset 2))
 
-;; go-mode
+
+;;; golang
+
 (setq gofmt-command "goimports") ;https://godoc.org/golang.org/x/tools/cmd/goimports
 (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -202,7 +224,7 @@
 (add-hook 'go-mode-hook 'go-eldoc-setup)
 
 
-;; flycheck
+;;; flycheck
 (global-flycheck-mode)
 
 
@@ -211,8 +233,8 @@
 (setq gud-pdb-command-name "python -m pdb")
 
 (elpy-enable)
-;; (add-hook 'elpy-mode-hook (lambda ()
-;;                             (add-hook 'before-save-hook 'elpy-format-code)))
+(add-hook 'elpy-mode-hook (lambda ()
+                            (add-hook 'before-save-hook #'elpy-format-code)))
 
 ;; (add-hook 'python-mode-hook 'jedi:setup)
 ;; (add-hook 'python-mode-hook (lambda ()
@@ -222,15 +244,16 @@
 
 
 ;; https://github.com/robert-zaremba/auto-virtualenvwrapper.el
-;(require 'auto-virtualenvwrapper)
-;(add-hook 'python-mode-hook #'auto-virtualenvwrapper-activate)
+;; (require 'auto-virtualenvwrapper)
+;; (add-hook 'python-mode-hook #'auto-virtualenvwrapper-activate)
 
 
 ;; (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
-;(add-hook 'python-mode-hook 'yapf-mode)
+;; (add-hook 'python-mode-hook 'yapf-mode)
 
 
-;; cuda
+;;; cuda
+
 (add-to-list 'auto-mode-alist '("\\.cu\\'" . c++-mode))
 
 
@@ -267,11 +290,42 @@
 
 
 ;;; orgmode
+
 (setq org-html-postamble nil)
 (setq org-agenda-files '("~/tsk"))
 (setq org-startup-truncated nil)
 
+
+;;; windows
+
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
+
+;; https://www.emacswiki.org/emacs/ToggleWindowSplit
+(defun toggle-window-split ()
+  "Transpose a vertical/horizontal window split."
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+	     (next-win-buffer (window-buffer (next-window)))
+	     (this-win-edges (window-edges (selected-window)))
+	     (next-win-edges (window-edges (next-window)))
+	     (this-win-2nd (not (and (<= (car this-win-edges)
+					 (car next-win-edges))
+				     (<= (cadr this-win-edges)
+					 (cadr next-win-edges)))))
+	     (splitter
+	      (if (= (car this-win-edges)
+		     (car (window-edges (next-window))))
+		  'split-window-horizontally
+		'split-window-vertically)))
+	(delete-other-windows)
+	(let ((first-win (selected-window)))
+	  (funcall splitter)
+	  (if this-win-2nd (other-window 1))
+	  (set-window-buffer (selected-window) this-win-buffer)
+	  (set-window-buffer (next-window) next-win-buffer)
+	  (select-window first-win)
+	  (if this-win-2nd (other-window 1))))))
 
 ;; move between windows with hjkl
 ;; (global-set-key (kbd "M-h")  'windmove-left)
@@ -305,11 +359,13 @@
 
     (define-key map (kbd "M-i") 'split-window-horizontally)
     (define-key map (kbd "M-o") 'split-window-vertically)
+    (define-key map (kbd "M-S-t") 'toggle-window-split)
 
     (define-key map (kbd "M-1") 'delete-other-windows)
     (define-key map (kbd "M-0") 'delete-window)
 
-    (define-key map (kbd "C-x g") 'magit-status)
+    (define-key map (kbd "C-x m") 'magit-status)
+    (define-key map (kbd "C-c f") 'company-files)
     map))
 (define-minor-mode my-keys
   "A minor mode to override already assigned keys by other major/minor modes."
@@ -322,26 +378,30 @@
 (add-hook 'minibuffer-setup-hook 'my-minibuffer-setup-hook)
 
 
-;; ;; redminer
+;;; redminer
+
 ;; (add-to-list 'load-path "~/prj/redminer")
 ;; (require 'redminer)
 ;; (add-hook 'org-mode-hook (lambda () (local-set-key (kbd "C-c r") #'redminer-insert-issue-as-org-link)))
 
-;; restclient
+
+;;; restclient
 (require 'restclient)
 
-;; helm
+
+;;; helm
 (helm-mode t)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 
-(indent-guide-global-mode)
+;; (indent-guide-global-mode)
 
 
 ;;; mail with mu4e
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
+(setq mu4e-hide-index-messages t)
 
 ;;; personal email config
 ;; sample content of .myemail.el configured for an exchange server where
@@ -354,15 +414,14 @@
 ;;       smtpmail-smtp-server "<smtp-server-hostname>"
 ;;       smtpmail-stream-type 'starttls
 ;;       smtpmail-smtp-service 587)
-;; (setq user-mail-address "firstname.lastname@example.tld")
+;; (setq user-mail-address "someone@example.tld")
 (load "~/.myemail")
 
 (require 'org-mu4e)
 
 
-
-
 ;;; easypg
+
 ;; save a file called .authinfo.gpg with following content
 ;; machine <hostname> login <username> password <password>
 ;; when symmetric encryption is choosen e.g. smtpmail
@@ -370,35 +429,13 @@
 ;; use the cached passphrase afterwards
 (epa-file-enable)
 
-;; https://www.emacswiki.org/emacs/ToggleWindowSplit
-(defun toggle-window-split ()
-  (interactive)
-  (if (= (count-windows) 2)
-      (let* ((this-win-buffer (window-buffer))
-	     (next-win-buffer (window-buffer (next-window)))
-	     (this-win-edges (window-edges (selected-window)))
-	     (next-win-edges (window-edges (next-window)))
-	     (this-win-2nd (not (and (<= (car this-win-edges)
-					 (car next-win-edges))
-				     (<= (cadr this-win-edges)
-					 (cadr next-win-edges)))))
-	     (splitter
-	      (if (= (car this-win-edges)
-		     (car (window-edges (next-window))))
-		  'split-window-horizontally
-		'split-window-vertically)))
-	(delete-other-windows)
-	(let ((first-win (selected-window)))
-	  (funcall splitter)
-	  (if this-win-2nd (other-window 1))
-	  (set-window-buffer (selected-window) this-win-buffer)
-	  (set-window-buffer (next-window) next-win-buffer)
-	  (select-window first-win)
-	  (if this-win-2nd (other-window 1))))))
 
-(define-key ctl-x-4-map "t" 'toggle-window-split)
-
-
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -406,13 +443,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (elpy company racer flycheck-rust auto-virtualenvwrapper flatui-theme restclient helm-pydoc haskell-mode doom-themes color-theme-sanityinc-tomorrow evil-magit magit leuven-theme dark-mint-theme yapfify clang-format flycheck go-eldoc go-autocomplete go-mode jedi org-bullets linum-relative evil))))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))
+    (racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
