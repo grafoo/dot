@@ -99,32 +99,32 @@
 (menu-bar-mode -1)
 
 
-;;; evil --- vim keybindings ftw
+;; ;;; evil --- vim keybindings ftw
 
-(evil-mode t)
-(setq evil-normal-state-cursor '("orange" hollow)
-      evil-insert-state-cursor '("orange" box)
-      evil-visual-state-cursor '("green" hollow))
+;; (evil-mode t)
+;; (setq evil-normal-state-cursor '("orange" hollow)
+;;       evil-insert-state-cursor '("orange" box)
+;;       evil-visual-state-cursor '("green" hollow))
 
-;; deactivate vim keybindings in insert mode
-;; https://gist.github.com/kidd/1828878
-(setcdr evil-insert-state-map nil)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
+;; ;; deactivate vim keybindings in insert mode
+;; ;; https://gist.github.com/kidd/1828878
+;; (setcdr evil-insert-state-map nil)
+;; (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
-(define-key evil-visual-state-map (kbd "TAB") 'tab-to-tab-stop)
+;; (define-key evil-visual-state-map (kbd "TAB") 'tab-to-tab-stop)
 
-(require 'evil-magit)
-(evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
+;; (require 'evil-magit)
+;; (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
 
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
 
 
-;; line numbers
-(global-linum-mode)
-(require 'linum-relative)
-(linum-relative-on)
+;; ;; line numbers
+;; (global-linum-mode)
+;; (require 'linum-relative)
+;; (linum-relative-on)
 
 (setq column-number-mode t)
 (setq-default tab-width 2) ;display tabs as 2 spaces wide but do not change the actual indentation level
@@ -156,12 +156,13 @@
 ;;              '(font . "mononoki-11"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Noto Mono-11"))
-(add-to-list 'default-frame-alist
-             '(font . "Iosevka Term-12"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Iosevka Term-12"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Fixedsys Excelsior-12"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Anonymous Pro-12"))
+(add-to-list 'default-frame-alist '(font . "Input Sans"))
 
 
 ;;; ide settings
@@ -298,6 +299,11 @@
 
 ;;; windows
 
+;; ace-window
+
+(set 'aw-dispatch-always t)
+(set 'aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
 
 ;; https://www.emacswiki.org/emacs/ToggleWindowSplit
@@ -352,13 +358,13 @@
 (defvar my-keys-map
   (let ((map (make-sparse-keymap)))
     ;; move between windows with hjkl
-    (define-key map (kbd "M-h") 'windmove-left)
-    (define-key map (kbd "M-j") 'windmove-down)
-    (define-key map (kbd "M-k") 'windmove-up)
-    (define-key map (kbd "M-l") 'windmove-right)
+    ;; (define-key map (kbd "M-h") 'windmove-left)
+    ;; (define-key map (kbd "M-j") 'windmove-down)
+    ;; (define-key map (kbd "M-k") 'windmove-up)
+    ;; (define-key map (kbd "M-l") 'windmove-right)
 
-    (define-key map (kbd "M-i") 'split-window-horizontally)
-    (define-key map (kbd "M-o") 'split-window-vertically)
+    ;; (define-key map (kbd "M-i") 'split-window-horizontally)
+    ;; (define-key map (kbd "M-o") 'split-window-vertically)
     (define-key map (kbd "M-S-t") 'toggle-window-split)
 
     (define-key map (kbd "M-1") 'delete-other-windows)
@@ -366,6 +372,7 @@
 
     (define-key map (kbd "C-x m") 'magit-status)
     (define-key map (kbd "C-c f") 'company-files)
+    (define-key map (kbd "M-p") 'ace-window)
     map))
 (define-minor-mode my-keys
   "A minor mode to override already assigned keys by other major/minor modes."
@@ -443,7 +450,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
+    (ace-window racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
