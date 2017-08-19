@@ -24,7 +24,9 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(multiple-cursors
+  '(avy
+    ace-window
+    multiple-cursors
     wrap-region
     evil
     linum-relative
@@ -140,7 +142,7 @@
                                  (interactive)
                                  (switch-to-buffer (other-buffer))))
 
-(setq-default show-trailing-whitespace t)
+;; (setq-default show-trailing-whitespace t)
 (setq-default truncate-lines nil)
 
 
@@ -221,7 +223,7 @@
 ;; gocode https://github.com/nsf/gocode
 (require 'go-autocomplete)          ;requires auto-complete-config
                                     ;which is installed with the auto-complete package
-(ac-config-default)                 ;enable auto-complete with default config
+;; (ac-config-default)                 ;enable auto-complete with default config
 
 ;; go-eldoc https://github.com/syohex/emacs-go-eldoc
 (add-hook 'go-mode-hook 'go-eldoc-setup)
@@ -232,6 +234,8 @@
 
 
 ;;; python
+(add-hook 'python-mode-hook (lambda ()
+                              (setq-local show-trailing-whitespace t)))
 
 (setq gud-pdb-command-name "python -m pdb")
 
@@ -374,7 +378,7 @@
 
     (define-key map (kbd "C-x m") 'magit-status)
     (define-key map (kbd "C-c f") 'company-files)
-    (define-key map (kbd "M-p") 'ace-window)
+    (define-key map (kbd "M-o") 'ace-window)
     map))
 (define-minor-mode my-keys
   "A minor mode to override already assigned keys by other major/minor modes."
