@@ -24,7 +24,9 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(evil
+  '(multiple-cursors
+    wrap-region
+    evil
     linum-relative
     ;; programming general
     flycheck
@@ -405,26 +407,27 @@
 
 
 ;;; mail with mu4e
+(when (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+  (require 'mu4e)
+  (setq mu4e-hide-index-messages t)
 
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(setq mu4e-hide-index-messages t)
+  ;; personal email config
+  ;; sample content of .myemail.el configured for an exchange server where
+  ;; mu4e indexing is set to a 10 seconds interval
+  ;; (setq mu4e-drafts-folder "/Drafts")
+  ;; (setq mu4e-sent-folder "/Sent Items")
+  ;; (setq mu4e-trash-folder "/Deleted Items")
+  ;; (setq mu4e-update-interval 10)
+  ;; (setq send-mail-function 'smtpmail-send-it
+  ;;       smtpmail-smtp-server "<smtp-server-hostname>"
+  ;;       smtpmail-stream-type 'starttls
+  ;;       smtpmail-smtp-service 587)
+  ;; (setq user-mail-address "someone@example.tld")
+  (load "~/.myemail")
 
-;;; personal email config
-;; sample content of .myemail.el configured for an exchange server where
-;; mu4e indexing is set to a 10 seconds interval
-;; (setq mu4e-drafts-folder "/Drafts")
-;; (setq mu4e-sent-folder "/Sent Items")
-;; (setq mu4e-trash-folder "/Deleted Items")
-;; (setq mu4e-update-interval 10)
-;; (setq send-mail-function 'smtpmail-send-it
-;;       smtpmail-smtp-server "<smtp-server-hostname>"
-;;       smtpmail-stream-type 'starttls
-;;       smtpmail-smtp-service 587)
-;; (setq user-mail-address "someone@example.tld")
-(load "~/.myemail")
+  (require 'org-mu4e))
 
-(require 'org-mu4e)
 
 
 ;;; easypg
@@ -450,7 +453,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ace-window racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
+    (multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
