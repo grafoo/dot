@@ -143,6 +143,11 @@
                                  (switch-to-buffer (other-buffer))))
 
 ;; (setq-default show-trailing-whitespace t)
+(require 'whitespace)
+(setq whitespace-style '(face tabs trailing lines-tail))
+(setq whitespace-global-modes '(not eshell-mode))
+(global-whitespace-mode t)
+
 (setq-default truncate-lines nil)
 
 
@@ -234,8 +239,6 @@
 
 
 ;;; python
-(add-hook 'python-mode-hook (lambda ()
-                              (setq-local show-trailing-whitespace t)))
 
 (setq gud-pdb-command-name "python -m pdb")
 
@@ -379,6 +382,8 @@
     (define-key map (kbd "C-x m") 'magit-status)
     (define-key map (kbd "C-c f") 'company-files)
     (define-key map (kbd "M-o") 'ace-window)
+    (define-key map (kbd "M-j") 'avy-goto-char-2)
+    (define-key map (kbd "M-h") 'avy-goto-line)
     map))
 (define-minor-mode my-keys
   "A minor mode to override already assigned keys by other major/minor modes."

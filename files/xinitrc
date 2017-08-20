@@ -1,7 +1,11 @@
 #xrdb $HOME/.Xresources
 
-# set layout to german, eliminate deadkeys, remap caps to escape and blow up caps for good
-setxkbmap -layout de -variant nodeadkeys -option "caps:escape"
+# to get a complete list of other options look at /usr/share/X11/xkb/rules/xorg.lst
+# # set layout to german, eliminate deadkeys, remap caps to escape and blow up caps for good
+# setxkbmap -layout de -variant nodeadkeys -option "caps:escape"
+
+# set layout to great britain and remap caps to an additional control
+setxkbmap -layout gb -option "ctrl:nocaps"
 
 #tpset() {
 # xinput set-prop "TPPS/2 IBM TrackPoint" "$@";
