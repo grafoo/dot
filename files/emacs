@@ -9,7 +9,7 @@
 
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-message t)        ;disable startup message
-
+(delete-selection-mode)
 
 ;;; packages
 
@@ -27,6 +27,7 @@
   '(avy
     ace-window
     multiple-cursors
+    expand-region
     wrap-region
     evil
     linum-relative
@@ -67,6 +68,7 @@
     racer
     ;;; autocompletion
     company
+    company-quickhelp
     auto-complete))
 
 (dolist (p my-packages)
@@ -89,7 +91,7 @@
 ;;; complete
 
 (add-hook 'after-init-hook 'global-company-mode)
-
+(company-quickhelp-mode t)
 
 ;;; editor/ui settings
 
