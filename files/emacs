@@ -24,7 +24,11 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(avy
+  '(projectile
+    helm-projectile
+    persp-projectile
+    perspective
+    avy
     ace-window
     multiple-cursors
     expand-region
@@ -55,6 +59,7 @@
     doom-themes
     color-theme-sanityinc-tomorrow
     flatui-theme
+    gruvbox-theme
     ;;; magit
     magit
     evil-magit
@@ -159,7 +164,8 @@
 ;; (load-theme 'leuven t)
 ;; (load-theme 'sanityinc-tomorrow-bright t)
 ;; (load-theme 'doom-one t)
-(load-theme 'flatui t)
+;; (load-theme 'flatui t)
+(load-theme 'gruvbox-light-hard t)
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
 
@@ -173,7 +179,8 @@
 ;;              '(font . "Fixedsys Excelsior-12"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Anonymous Pro-12"))
-(add-to-list 'default-frame-alist '(font . "Input Sans"))
+;; (add-to-list 'default-frame-alist '(font . "Input Sans"))
+(add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono"))
 
 
 ;;; ide settings
@@ -307,6 +314,8 @@
 (setq org-agenda-files '("~/tsk"))
 (setq org-startup-truncated nil)
 
+(add-hook 'ediff-prepare-buffer-hook #'show-all)
+
 
 ;;; windows
 
@@ -386,6 +395,8 @@
     (define-key map (kbd "M-o") 'ace-window)
     (define-key map (kbd "M-j") 'avy-goto-char-2)
     (define-key map (kbd "M-h") 'avy-goto-line)
+    (define-key map (kbd "C-c m c i") 'mc/edit-lines)
+    (define-key map (kbd "C-c m c b") 'mc/edit-beginnings-of-lines)
     map))
 (define-minor-mode my-keys
   "A minor mode to override already assigned keys by other major/minor modes."
@@ -451,6 +462,9 @@
 (epa-file-enable)
 
 
+(persp-mode)
+
+
 ;; (custom-set-faces
 ;;  ;; custom-set-faces was added by Custom.
 ;;  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -464,7 +478,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
+    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
