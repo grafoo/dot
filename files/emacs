@@ -397,6 +397,7 @@
     (define-key map (kbd "M-h") 'avy-goto-line)
     (define-key map (kbd "C-c m c i") 'mc/edit-lines)
     (define-key map (kbd "C-c m c b") 'mc/edit-beginnings-of-lines)
+    (define-key map (kbd "C-=") 'er/expand-region)
     map))
 (define-minor-mode my-keys
   "A minor mode to override already assigned keys by other major/minor modes."
