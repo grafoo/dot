@@ -33,7 +33,6 @@
     multiple-cursors
     expand-region
     wrap-region
-    linum-relative
     ;; programming general
     flycheck
     indent-guide
@@ -110,12 +109,6 @@
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
 ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
-
-
-;; ;; line numbers
-;; (global-linum-mode)
-;; (require 'linum-relative)
-;; (linum-relative-on)
 
 (setq column-number-mode t)
 (setq-default tab-width 2) ;display tabs as 2 spaces wide but do not change the actual indentation level
@@ -459,7 +452,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative))))
+    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
