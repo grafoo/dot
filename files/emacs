@@ -52,11 +52,6 @@
     clang-format
     yapfify
     ;;; themes
-    dark-mint-theme
-    leuven-theme
-    doom-themes
-    color-theme-sanityinc-tomorrow
-    flatui-theme
     gruvbox-theme
     ;;; magit
     magit
@@ -133,11 +128,6 @@
 
 ;;; theme stuff
 
-;; (setq leuven-scale-outline-headlines nil)
-;; (load-theme 'leuven t)
-;; (load-theme 'sanityinc-tomorrow-bright t)
-;; (load-theme 'doom-one t)
-;; (load-theme 'flatui t)
 (load-theme 'gruvbox-light-hard t)
 
 (setq x-underline-at-descent-line t) ;underline postition setting for Xorg
@@ -438,13 +428,6 @@
 
 (persp-mode)
 
-
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(org-level-1 ((t (:background "#23272e" :foreground "#51afef" :weight bold :height 1.0)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
