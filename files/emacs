@@ -33,7 +33,6 @@
     multiple-cursors
     expand-region
     wrap-region
-    evil
     linum-relative
     ;; programming general
     flycheck
@@ -62,7 +61,6 @@
     gruvbox-theme
     ;;; magit
     magit
-    evil-magit
     ;;; haskell
     ;; haskell-mode
     helm
@@ -108,24 +106,6 @@
       (tool-bar-mode -1)
       (scroll-bar-mode -1)))
 (menu-bar-mode -1)
-
-
-;; ;;; evil --- vim keybindings ftw
-
-;; (evil-mode t)
-;; (setq evil-normal-state-cursor '("orange" hollow)
-;;       evil-insert-state-cursor '("orange" box)
-;;       evil-visual-state-cursor '("green" hollow))
-
-;; ;; deactivate vim keybindings in insert mode
-;; ;; https://gist.github.com/kidd/1828878
-;; (setcdr evil-insert-state-map nil)
-;; (define-key evil-insert-state-map [escape] 'evil-normal-state)
-
-;; (define-key evil-visual-state-map (kbd "TAB") 'tab-to-tab-stop)
-
-;; (require 'evil-magit)
-;; (evil-define-key evil-magit-state magit-mode-map "?" 'evil-search-backward)
 
 ;; show org-mode bullets as utf-8 characters
 ;; example screenshot at https://github.com/sabof/org-bullets/raw/master/screenshot.png
@@ -479,7 +459,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm evil-magit magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative evil))))
+    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck linum-relative))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
