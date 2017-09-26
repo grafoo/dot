@@ -177,3 +177,9 @@ PS1='\h \W> '
 
 # replace the bash process with fish if available
 #$(which fish > /dev/null 2>&1) && exec fish
+
+# source virtualenvwrapper
+test -n "$WORKON_HOME" &&
+  test -n "$PROJECT_HOME" &&
+  test -f "${HOME}/.local/bin/virtualenvwrapper.sh" &&
+  . "${HOME}/.local/bin/virtualenvwrapper.sh"

@@ -214,6 +214,10 @@
 
 (setq gud-pdb-command-name "python -m pdb")
 
+(when (executable-find "python-init")
+  (setq python-shell-interpreter "python-init"
+        elpy-rpc-python-command "python-init"))
+
 (elpy-enable)
 (add-hook 'elpy-mode-hook (lambda ()
                             (add-hook 'before-save-hook #'elpy-format-code)))

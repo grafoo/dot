@@ -53,3 +53,9 @@ test "$LANG" = "en_US.UTF-8" ||
 # dot files
 test -d "${HOME}/dot" &&
   export DOT_FILES_DIR="${HOME}/dot"
+
+# virtualenvwrapper
+test -d "${HOME}/.virtualenvs" &&
+  export WORKON_HOME="${HOME}/.virtualenvs"
+test -d "${HOME}/projects" &&
+  export PROJECT_HOME="${HOME}/projects"
