@@ -289,7 +289,7 @@
 ;; ace-window
 
 (set 'aw-dispatch-always t)
-(set 'aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+(set 'aw-keys '(?f ?j ?d ?k ?s ?l ?a ?g ?h))
 
 (winner-mode t)                         ;un-/redo window changes with `C-c left' and `C-c right'
 
@@ -362,9 +362,9 @@
     (define-key map (kbd "M-o") 'ace-window)
     (define-key map (kbd "M-j") 'avy-goto-char-2)
     (define-key map (kbd "M-h") 'avy-goto-line)
-    (define-key map (kbd "C-c m c i") 'mc/edit-lines)
-    (define-key map (kbd "C-c m c b") 'mc/edit-beginnings-of-lines)
-    (define-key map (kbd "C-c m c e") 'mc/edit-ends-of-lines)
+    (define-key map (kbd "C-c m i") 'mc/edit-lines)
+    (define-key map (kbd "C-c m b") 'mc/edit-beginnings-of-lines)
+    (define-key map (kbd "C-c m e") 'mc/edit-ends-of-lines)
     (define-key map (kbd "C-=") 'er/expand-region)
     map))
 (define-minor-mode my-keys
