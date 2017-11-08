@@ -1,0 +1,2 @@
+"\C-w": kill-region
+"\e-w": copy-region-as-kill
