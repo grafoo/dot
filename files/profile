@@ -55,6 +55,9 @@ test -d "${HOME}/dot" &&
   export DOT_FILES_DIR="${HOME}/dot"
 
 # virtualenvwrapper
+_python_init=$(which python-init)
+test -n "$_python_init" &&
+  export VIRTUALENVWRAPPER_PYTHON="$_python_init"
 test -d "${HOME}/.virtualenvs" &&
   export WORKON_HOME="${HOME}/.virtualenvs"
 test -d "${HOME}/projects" &&

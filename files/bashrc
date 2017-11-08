@@ -183,3 +183,7 @@ test -n "$WORKON_HOME" &&
   test -n "$PROJECT_HOME" &&
   test -f "${HOME}/.local/bin/virtualenvwrapper.sh" &&
   . "${HOME}/.local/bin/virtualenvwrapper.sh"
+
+# bash completion
+test -f /usr/share/bash-completion/bash_completion &&
+  . /usr/share/bash-completion/bash_completion

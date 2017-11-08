@@ -19,5 +19,6 @@ setxkbmap -layout gb -option "ctrl:nocaps"
 
 xsetroot -cursor_name left_ptr
 xrdb -merge "${HOME}/.Xresources"
-exec openbox-session
+#exec openbox-session
 #exec xmonad
+exec startxfce4

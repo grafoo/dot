@@ -12,6 +12,8 @@
 (delete-selection-mode)
 (setq-default bidi-display-reordering nil) ;performance improvement when displaying long lines
 
+
+
 ;;; packages
 
 (require 'package)
@@ -25,8 +27,9 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(projectile
-    helm-projectile
+  '(flx-ido
+    projectile
+    ;; helm-projectile
     persp-projectile
     perspective
     avy
@@ -58,7 +61,7 @@
     magit
     ;;; haskell
     ;; haskell-mode
-    helm
+    ;; helm
     restclient
     ;;; rust
     rust-mode
@@ -72,6 +75,15 @@
 (dolist (p my-packages)
   (unless (package-installed-p p)
     (package-install p)))
+
+
+;; ido
+(ido-mode t)
+(ido-everywhere t)
+
+(require 'flx-ido)
+(flx-ido-mode t)
+(setq ido-enable-flex-matching t)
 
 
 ;;; file handling
@@ -144,8 +156,11 @@
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Anonymous Pro-12"))
 ;; (add-to-list 'default-frame-alist '(font . "Input Sans"))
-(add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono"))
+;; (add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono"))
+;; (set-frame-font )
 
+(add-to-list 'default-frame-alist
+             '(font . "Liberation Mono-12"))
 
 ;;; ide settings
 
@@ -189,8 +204,8 @@
 
 (add-hook 'sh-mode-hook
             (setq
-             sh-indentation 2
-             sh-basic-offset 2))
+             sh-indentation 4
+             sh-basic-offset 4))
 
 
 ;;; golang
@@ -390,9 +405,9 @@
 (require 'restclient)
 
 
-;;; helm
-(helm-mode t)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;; ;;; helm
+;; (helm-mode t)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 
 ;; (indent-guide-global-mode)
@@ -434,6 +449,16 @@
 
 (persp-mode)
 
+
+;; projectile
+;; (setq projectile-keymap-prefix (kbd "C-c C-p"))
+(projectile-global-mode)
+
+;; (require 'helm-projectile)
+;; (helm-projectile-on)
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -441,7 +466,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck))))
+    (flx-ido gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
