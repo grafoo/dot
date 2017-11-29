@@ -159,8 +159,11 @@
 ;; (add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono"))
 ;; (set-frame-font )
 
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Liberation Mono-12"))
 (add-to-list 'default-frame-alist
-             '(font . "Liberation Mono-12"))
+             '(font . "Go Mono-12"))
+
 
 ;;; ide settings
 
