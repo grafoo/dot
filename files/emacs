@@ -10,6 +10,7 @@
 (setq ring-bell-function 'ignore)
 (setq inhibit-startup-message t)        ;disable startup message
 (delete-selection-mode)
+(setq frame-resize-pixelwise t)
 
 ;;; packages
 
@@ -143,7 +144,9 @@
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Anonymous Pro-12"))
 ;; (add-to-list 'default-frame-alist '(font . "Input Sans"))
-(add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono"))
+;; (add-to-list 'default-frame-alist '(font . "Fantasque Sans Mono-14"))
+;; (add-to-list 'default-frame-alist '(font . "Monospace Regular-12"))
+(add-to-list 'default-frame-alist '(font . "Go Mono-12"))
 
 
 ;;; ide settings
@@ -200,7 +203,9 @@
 ;; gocode https://github.com/nsf/gocode
 (require 'go-autocomplete)          ;requires auto-complete-config
                                     ;which is installed with the auto-complete package
-;; (ac-config-default)                 ;enable auto-complete with default config
+(ac-config-default)                 ;enable auto-complete with default config
+;; (require 'company-go)
+;; (setq company-begin-commands '(self-insert-command))
 
 ;; go-eldoc https://github.com/syohex/emacs-go-eldoc
 (add-hook 'go-mode-hook 'go-eldoc-setup)
@@ -386,8 +391,8 @@
 
 
 ;;; helm
-(helm-mode t)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
+;; (helm-mode t)
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 
 ;; (indent-guide-global-mode)
@@ -429,6 +434,9 @@
 
 (persp-mode)
 
+
+(ido-mode t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -436,7 +444,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck))))
+    (company-go gruvbox-theme persp-projectile helm-projectile perspective projectile multiple-cursors wrap-region ace-window racer flycheck-rust rust-mode restclient helm magit flatui-theme color-theme-sanityinc-tomorrow doom-themes leuven-theme dark-mint-theme yapfify clang-format go-eldoc go-autocomplete go-mode org-bullets elpy indent-guide flycheck))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

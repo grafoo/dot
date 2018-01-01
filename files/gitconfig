@@ -5,11 +5,11 @@
 	helper = cache --timeout=28800
 [alias]
 	lo = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	st = status
-	ad = add
-	ada = add --all
+	s = status
+	a = add
+	aa = add --all
 	co = checkout
 	ci = commit
 	ca = commit -a
-	ps = push
+	p = push
 	di = diff
