@@ -55,7 +55,7 @@ test -d "${HOME}/dot" &&
   export DOT_FILES_DIR="${HOME}/dot"
 
 # virtualenvwrapper
-_python_init=$(which python-init)
+_python_init=$(which python-init>/dev/null 2>&1)
 test -n "$_python_init" &&
   export VIRTUALENVWRAPPER_PYTHON="$_python_init"
 test -d "${HOME}/.virtualenvs" &&
