@@ -1,3 +1,4 @@
 set bind-tty-special-chars off
 "\C-w": kill-region
 "\e-w": copy-region-as-kill
+set bell-style none
