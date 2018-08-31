@@ -11,9 +11,9 @@ set encoding=utf-8
 " PLUGINS
 "
 
-call plug#begin('~/.vim/plugged')
-source $HOME/.vimrc_plugins
-call plug#end()
+"call plug#begin('~/.vim/plugged')
+"source $HOME/.vimrc_plugins
+"call plug#end()
 
 
 "

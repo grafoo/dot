@@ -1,4 +1,5 @@
 set bind-tty-special-chars off
 "\C-w": kill-region
-"\e-w": copy-region-as-kill
+"\M-w": copy-region-as-kill
+"\C-@": set-mark
 set bell-style none

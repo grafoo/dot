@@ -21,20 +21,21 @@ test -d "${HOME}/.cargo" &&
   export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # go
-test -d "${HOME}/lng/go" &&
-  export GOROOT="${HOME}/lng/go" &&
+test -d "${HOME}/sdk/go" &&
+  export GOROOT="${HOME}/sdk/go" &&
   export PATH="${GOROOT}/bin:${PATH}" &&
   export GOPATH="$HOME"
 
 # java
-test -d "${HOME}/lng/jdk" &&
-  export JAVA_HOME="${HOME}/lng/jdk" &&
+test -d "${HOME}/sdk/jdk" &&
+  export JAVA_HOME="${HOME}/sdk/jdk" &&
   export PATH="${JAVA_HOME}/bin:${PATH}"
 
-# ocaml
+# OCaml OPAM configuration
 test -f "${HOME}/.opam/opam-init/init.sh" &&
-  . "${HOME}/.opam/opam-init/init.sh" 2>&1 /dev/null ||
-  true
+    {
+        . "${HOME}/.opam/opam-init/init.sh" >/dev/null 2>&1 || true
+    }
 
 # bin dirs
 test -d "${HOME}/bin" &&
@@ -55,10 +56,23 @@ test -d "${HOME}/dot" &&
   export DOT_FILES_DIR="${HOME}/dot"
 
 # virtualenvwrapper
-_python_init=$(which python-init>/dev/null 2>&1)
-test -n "$_python_init" &&
-  export VIRTUALENVWRAPPER_PYTHON="$_python_init"
 test -d "${HOME}/.virtualenvs" &&
   export WORKON_HOME="${HOME}/.virtualenvs"
 test -d "${HOME}/projects" &&
   export PROJECT_HOME="${HOME}/projects"
+
+# rust cargo
+test -d "${HOME}/.cargo/bin" &&
+    export PATH="${HOME}/.cargo/bin:${PATH}"
+
+# guix
+test -e "${HOME}/.guix-profile/lib/locale" &&
+  export GUIX_LOCPATH="${HOME}/.guix-profile/lib/locale"
+export PATH="${HOME}/.guix-profile/bin${PATH:+:}$PATH"
+export PATH="${HOME}/.guix-profile/sbin${PATH:+:}$PATH"
+export JUPYTER_PATH="${HOME}/.guix-profile/share/jupyter${JUPYTER_PATH:+:}$JUPYTER_PATH"
+export GUIX_GTK3_PATH="${HOME}/.guix-profile/lib/gtk-3.0${GUIX_GTK3_PATH:+:}$GUIX_GTK3_PATH"
+export PYTHONPATH="${HOME}/.guix-profile/lib/python3.6/site-packages${PYTHONPATH:+:}$PYTHONPATH"
+export GI_TYPELIB_PATH="${HOME}/.guix-profile/lib/girepository-1.0${GI_TYPELIB_PATH:+:}$GI_TYPELIB_PATH"
+export XDG_DATA_DIRS="${HOME}/.guix-profile/share${XDG_DATA_DIRS:+:}$XDG_DATA_DIRS"
+export GIO_EXTRA_MODULES="${HOME}/.guix-profile/lib/gio/modules${GIO_EXTRA_MODULES:+:}$GIO_EXTRA_MODULES"

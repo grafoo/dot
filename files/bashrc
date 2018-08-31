@@ -166,18 +166,48 @@ ssh_master_exit_all() {
 }
 export -f ssh_master_exit_all
 
+unset sshchckcm
+sshchckcm() {
+   ssh -O check "$1"
+}
+export -f sshchckcm
+
+unset yumvars
+yumvars() {
+  python -c 'import yum, pprint; yb = yum.YumBase(); pprint.pprint(yb.conf.yumvar, width=1)'
+}
+export -f yumvars
+
+# TODO
+# unset clc
+# clc() {
+#     awk -v expression="$1" 'BEGIN{printf("%f\n", expression)}'
+# }
+# export -f clc
+
+unset gitbsu
+gitbsu() {
+    git branch -vv | grep -o '.*]'
+}
+export -f gitbsu
+
+unset pvdisplay_vg_uuid
+pvdisplay_vg_uuid() {
+    sudo pvdisplay --columns --options pv_name,vg_name,vg_uuid
+}
+export -f pvdisplay_vg_uuid
+
 alias less='less --RAW-CONTROL-CHARS'
-alias ..='cd ..'
+# alias ..='cd ..'
+shopt -s autocd                 # will work for .. as well
 alias ...='cd ../..'
 alias grepp='grep --color=auto --perl-regexp'
 
 start_ssh_agent
 
-PS1='\h \W> '
-
-# replace the bash process with fish if available
-#$(which fish > /dev/null 2>&1) && exec fish
-
+if test -n "$GUIX_ENVIRONMENT"; then
+    export PS1='[guix] \h \W> '
+else
 # source virtualenvwrapper
 test -n "$WORKON_HOME" &&
   test -n "$PROJECT_HOME" &&
@@ -187,3 +217,5 @@ test -n "$WORKON_HOME" &&
 # bash completion
 test -f /usr/share/bash-completion/bash_completion &&
   . /usr/share/bash-completion/bash_completion
+    export PS1='\h \W> '
+fi
