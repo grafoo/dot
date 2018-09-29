@@ -1,4 +1,5 @@
 test -f "${HOME}/.profile" &&
+    test -z "$TMUX" &&
   source "${HOME}/.profile"
 
 test -f "${HOME}/.bashrc" &&

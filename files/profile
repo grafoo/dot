@@ -66,13 +66,39 @@ test -d "${HOME}/.cargo/bin" &&
     export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # guix
+# install glibc-utf8-locales package
 test -e "${HOME}/.guix-profile/lib/locale" &&
   export GUIX_LOCPATH="${HOME}/.guix-profile/lib/locale"
-export PATH="${HOME}/.guix-profile/bin${PATH:+:}$PATH"
-export PATH="${HOME}/.guix-profile/sbin${PATH:+:}$PATH"
+
+test -d "${HOME}/.guix-profile/bin" &&
+export PATH="${HOME}/.guix-profile/bin${PATH:+:}${PATH}"
+
+test -d "${HOME}/.guix-profile/sbin" &&
+export PATH="${HOME}/.guix-profile/sbin${PATH:+:}${PATH}"
+
 export JUPYTER_PATH="${HOME}/.guix-profile/share/jupyter${JUPYTER_PATH:+:}$JUPYTER_PATH"
 export GUIX_GTK3_PATH="${HOME}/.guix-profile/lib/gtk-3.0${GUIX_GTK3_PATH:+:}$GUIX_GTK3_PATH"
 export PYTHONPATH="${HOME}/.guix-profile/lib/python3.6/site-packages${PYTHONPATH:+:}$PYTHONPATH"
 export GI_TYPELIB_PATH="${HOME}/.guix-profile/lib/girepository-1.0${GI_TYPELIB_PATH:+:}$GI_TYPELIB_PATH"
 export XDG_DATA_DIRS="${HOME}/.guix-profile/share${XDG_DATA_DIRS:+:}$XDG_DATA_DIRS"
 export GIO_EXTRA_MODULES="${HOME}/.guix-profile/lib/gio/modules${GIO_EXTRA_MODULES:+:}$GIO_EXTRA_MODULES"
+
+# list fonts with `xlsfonts`
+# query current user preferences of X (e.g. 'Font Path') with `xset q`
+guix_fonts_dir="${HOME}/.guix-profile/share/fonts/truetype/fonts.dir"
+readlink -e "$guix_fonts_dir" &&
+xset +fp $(dirname $(readlink -f "$guix_fonts_dir"))
+
+# X.509
+# install nss-certs package
+export SSL_CERT_DIR="${HOME}/.guix-profile/etc/ssl/certs"
+export SSL_CERT_FILE="${HOME}/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+export CURL_CA_BUNDLE="$SSL_CERT_FILE"
+export GIT_SSL_CAINFO="$SSL_CERT_FILE"
+
+# git
+test -d "${HOME}/.guix-profile/libexec/git-core" &&
+export GIT_EXEC_PATH="${HOME}/.guix-profile/libexec/git-core"
+
+export PATH="${HOME}/.config/guix/current/bin${PATH:+:}$PATH"
+export INFOPATH="${HOME}/.guix-profile/share/info${INFOPATH:+:}$INFOPATH"
