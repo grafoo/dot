@@ -1,15 +1,36 @@
-[user]
-	name = Manuel Graf
-	email = m@grafoo.at
-[credential]
-	helper = cache --timeout=28800
+[include]
+	path = .gitconfig.user
+        path = .gitconfig.sendemail
 [alias]
-	lo = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	l = log --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	la = log --all --tags --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	lo = log --oneline --name-only
+	ln = log --oneline --name-status
+	lf = log --follow
+	lao = log --all --graph --decorate --oneline --name-only
+	las = log --all --graph --decorate --oneline --name-status
+	lt = ls-tree -r
 	s = status
 	a = add
 	aa = add --all
 	co = checkout
-	ci = commit
+	cb = checkout -b
+	c = commit
 	ca = commit -a
 	p = push
-	di = diff
+	d = diff
+	ds = diff --staged
+	dno = diff --name-only
+	dns = diff --name-status
+	b = branch
+	ba = branch -a
+	bv = branch -vv
+	ss = stash show -p
+	st = show --stat
+	sno = show --name-only
+	sns = show --name-status
+	#sns = show --name-status --pretty=''
+	rv = remote -v
+	fa = fetch --all
+[push]
+	default = simple
