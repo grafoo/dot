@@ -202,6 +202,8 @@ alias less='less --RAW-CONTROL-CHARS'
 shopt -s autocd                 # will work for .. as well
 alias ...='cd ../..'
 alias grepp='grep --color=auto --perl-regexp'
+alias grepi='grep --color=auto --ignore-case'
+alias mpv_audio-channels_stereo='mpv --audio-channels=stereo'
 
 start_ssh_agent
 
