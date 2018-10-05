@@ -32,5 +32,6 @@
 	#sns = show --name-status --pretty=''
 	rv = remote -v
 	fa = fetch --all
+	sms = submodule status
 [push]
 	default = simple
