@@ -1,0 +1,12 @@
+* about
+/dɒt faɪlˈz/
+
+* emacs
+** windows
+*** ext libs
+http://gnuwin32.sourceforge.net/packages/zlib.htm
+http://gnuwin32.sourceforge.net/packages/diffutils.htm
+
+* xorg
+install index.theme to /usr/share/icons/default/index.theme for using the true
+and only cursor set everywhere.
