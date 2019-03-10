@@ -1,0 +1,10 @@
+/* install to ~/.mozilla/firefox/*.default/chrome/userChrome.css */
+
+/* do not display the tab bar.
+   this is useful in combination with i3 and rofi.
+   when new windows are created instead of new tabs i3 keyboard shortcuts can be
+   used for "tab" management and rofi is your guy for searching through tabs.
+ */
+#TabsToolbar {
+  visibility: collapse !important;
+}
