@@ -98,6 +98,15 @@ rpmx() {
 }
 export -f rpmx
 
+unset rpmrequires
+rpmrequires() {
+  repoquery --requires --resolve --pkgnarrow=all "$1" |
+    tee >(xargs -r -n 1 -- repoquery --requires --resolve --pkgnarrow=all) |
+    sort |
+    uniq
+}
+export -f rpmrequires
+
 unset rpmq
 rpmq() {
   test -n "$1" &&
@@ -197,6 +206,50 @@ pvdisplay_vg_uuid() {
 }
 export -f pvdisplay_vg_uuid
 
+#unset change-commit-msg
+#git-change-commit-msg(){
+#  commit="$1"
+#  newmsg="$2"
+#  branch="master"
+#  git checkout $commit
+#  git commit --amend -m "$newmsg"
+#  git cherry-pick $commit..$branch
+#  git branch -f $branch
+#  git checkout $branch
+#}
+#export -f git-change-commit-msg
+
+unset mvlstdwnhere
+mvlstdwnhere() {
+mv $(ls -lrt ~/Downloads | tail -n1 | awk -vhome=$HOME '{print home"/Downloads/"$NF}') ./
+}
+export -f mvlstdwnhere
+
+unset get_x_display
+get_x_display() {
+ps -CXorg -o'%a'|perl -ane 'foreach $arg (@F){if ($arg =~ /:\d+/) {print $arg}}'
+}
+export -f get_x_display
+
+unset start_x11vnc
+start_x11vnc() {
+  local _display=$(get_x_display)
+  nohup x11vnc -display "$_display" >/dev/null 2>&1 &
+  if test $? = 0; then
+    echo "connect with vncviewer $(nslookup $(hostname -f)|grep -A1 'Name:'|tail -n1|cut -d: -f2)${_display}"
+  else
+    echo "something went wrong"
+  fi
+}
+export -f start_x11vnc
+
+unset list_docker_tags
+list_docker_tags() {
+  type -p curl && type -p jq || exit 1
+  curl -L "https://registry.hub.docker.com/v1/repositories/${1}/tags" | jq
+}
+export -f list_docker_tags
+
 alias less='less --RAW-CONTROL-CHARS'
 # alias ..='cd ..'
 shopt -s autocd                 # will work for .. as well
@@ -204,6 +257,9 @@ alias ...='cd ../..'
 alias grepp='grep --color=auto --perl-regexp'
 alias grepi='grep --color=auto --ignore-case'
 alias mpv_audio-channels_stereo='mpv --audio-channels=stereo'
+alias gpg-kill-agent='gpgconf --kill gpg-agent'
+alias download-firefox='curl -Lo firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"'
+alias ssh-no-pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 
 start_ssh_agent
 
@@ -211,8 +267,8 @@ if test -n "$GUIX_ENVIRONMENT"; then
     export PS1='[guix] \h \W> '
 else
 # source virtualenvwrapper
-test -n "$WORKON_HOME" &&
-  test -n "$PROJECT_HOME" &&
+#test -n "$WORKON_HOME" &&
+#  test -n "$PROJECT_HOME" &&
   test -f "${HOME}/.local/bin/virtualenvwrapper.sh" &&
   . "${HOME}/.local/bin/virtualenvwrapper.sh"
 
