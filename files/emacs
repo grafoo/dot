@@ -139,9 +139,9 @@
 
 (use-package multiple-cursors
   :ensure t
-  :bind (("C-c m i" . mc/edit-lines)
-         ("C-c m a" . mc/edit-beginnings-of-lines)
-         ("C-c m e" . mc/edit-ends-of-lines)))
+  :bind (("C-c c i" . mc/edit-lines)
+         ("C-c c a" . mc/edit-beginnings-of-lines)
+         ("C-c c e" . mc/edit-ends-of-lines)))
 
 (use-package python
   :ensure t
@@ -219,7 +219,12 @@
     (define-key map (kbd "C-c b") '(lambda () "Switch to last used buffer."
                                      (interactive)
                                      (switch-to-buffer (other-buffer))))
+    (define-key map (kbd "C-c C-b") 'buffer-menu-other-window)
     (define-key map (kbd "<M-tab>") 'other-window)
+    (define-key map (kbd "C-c o") 'org-agenda)
+    (define-key map (kbd "C-c m") 'mu4e)
+    (define-key map (kbd "C-c s") 'org-mu4e-store-and-capture)
+    (define-key map (kbd "C-c h") 'org-mime-htmlize)
     map))
 
 (define-minor-mode my-keybindings
@@ -267,6 +272,7 @@
 
 ;;; golang
 
+;; go get golang.org/x/tools/cmd/goimports
 (setq gofmt-command "goimports") ;https://godoc.org/golang.org/x/tools/cmd/goimports
 (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -279,6 +285,9 @@
 
 ;; go-eldoc https://github.com/syohex/emacs-go-eldoc
 (add-hook 'go-mode-hook 'go-eldoc-setup)
+
+;; flycheck uses "go tool vet -all" which doesn't seem to be supported anymore
+(setq flycheck-go-vet-executable "go vet -all")
 
 
 ; python
@@ -327,6 +336,7 @@
 
 (setq org-html-postamble nil)
 (setq org-agenda-files '("~/org"))
+;; (setq org-agenda-files (directory-files-recursively "~" "\.org$"))
 (setq org-startup-truncated nil)
 
 
@@ -335,38 +345,53 @@
 
 (setq rcirc-server-alist '(("irc.freenode.net" :port 6697 :encryption tls :nick "grafoo")))
 
-; ;;; mail with mu4e
-; (when (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
-;   (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
-;   (require 'mu4e)
-;   (setq mu4e-hide-index-messages t)
+;;; mail with mu4e
+(when (file-directory-p "/usr/share/emacs/site-lisp/mu4e")
+  (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+  (require 'mu4e)
+  (setq mu4e-hide-index-messages t)
 
-;   ;; personal email config
-;   ;; sample content of .myemail.el configured for an exchange server where
-;   ;; mu4e indexing is set to a 10 seconds interval
-;   ;; (setq mu4e-drafts-folder "/Drafts")
-;   ;; (setq mu4e-sent-folder "/Sent Items")
-;   ;; (setq mu4e-trash-folder "/Deleted Items")
-;   ;; (setq mu4e-update-interval 10)
-;   ;; (setq send-mail-function 'smtpmail-send-it
-;   ;;       smtpmail-smtp-server "<smtp-server-hostname>"
-;   ;;       smtpmail-stream-type 'starttls
-;   ;;       smtpmail-smtp-service 587)
-;   ;; (setq user-mail-address "someone@example.tld")
-;   (load "~/.myemail")
+  ;; personal email config
+  ;; sample content of .myemail.el configured for an exchange server where
+  ;; mu4e indexing is set to a 10 seconds interval
+  ;; (setq mu4e-drafts-folder "/Drafts")
+  ;; (setq mu4e-sent-folder "/Sent Items")
+  ;; (setq mu4e-trash-folder "/Deleted Items")
+  ;; (setq mu4e-update-interval 10)
+  ;; (setq send-mail-function 'smtpmail-send-it
+  ;;       smtpmail-smtp-server "<smtp-server-hostname>"
+  ;;       smtpmail-stream-type 'starttls
+  ;;       smtpmail-smtp-service 587)
+  ;; (setq user-mail-address "someone@example.tld")
+  ;; (setq mu4e-user-mail-address-list '("someone@example.tld"))
+  (load "~/.myemail.el")
 
-;   (require 'org-mu4e))
+  (require 'org-mu4e)
+
+  ;; workaround when mailserver expects to receive mails encoded as html
+  ;; enable only when actually needed
+  (add-hook 'mu4e-compose-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c C-c")
+                             '(lambda ()
+                                (interactive)
+                                (org-mime-htmlize)
+                                (message-send-and-exit))))))
 
 
 
-; ;;; easypg
+;;; easypg
 
-; ;; save a file called .authinfo.gpg with following content
-; ;; machine <hostname> login <username> password <password>
-; ;; when symmetric encryption is choosen e.g. smtpmail
-; ;; will require this passphrase when sending the first message and
-; ;; use the cached passphrase afterwards
-; (epa-file-enable)
+;; save a file called .authinfo.gpg with following content
+;; machine <hostname> login <username> password <password>
+;; when symmetric encryption is choosen e.g. smtpmail
+;; will require this passphrase when sending the first message and
+;; use the cached passphrase afterwards
+
+;; (epa-file-enable)
+;; (setenv "GPG_AGENT_INFO" nil)
+;; (setq epa-pinentry-mode 'loopback)
+;; (pinentry-start)
 
 ; (persp-mode)
 
@@ -380,6 +405,16 @@
 ;; make-backup-files: disable backup files e.g. foo~
 ;; TODO: checkout auto-save-visited-mode
 
+
+;; utf-8 all the things
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+
+(put 'downcase-region 'disabled nil)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -387,16 +422,19 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
+ '(epa-pinentry-mode (quote loopback))
  '(frame-resize-pixelwise t)
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(line-number-mode nil)
  '(make-backup-files nil)
  '(org-log-done (quote note))
- '(org-startup-truncated nil t)
+ '(org-startup-truncated nil)
  '(org-tags-column 0)
  '(package-selected-packages
    (quote
-    (go-eldoc go-mode rust-mode multiple-cursors magit gruvbox-theme flycheck flx-ido expand-region elpy company-quickhelp company clang-format ace-window use-package)))
+    (org-mime yaml-mode go-eldoc go-mode rust-mode multiple-cursors magit gruvbox-theme flycheck flx-ido expand-region elpy company-quickhelp company clang-format ace-window use-package)))
+ '(require-final-newline t)
  '(ring-bell-function (quote ignore))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
