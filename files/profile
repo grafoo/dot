@@ -1,24 +1,50 @@
-# suse
-test -f /etc/issue &&
-  grep -qs "SUSE" /etc/issue &&
-  test -z "$PROFILEREAD" &&
-  source /etc/profile
+append_export_if_exists ()
+{
+  local variable="$1"
+  local path="$2"
+  test -d "$path" &&
+    {
+      content=$(printenv $variable)
+      if test -n "$content"; then
+        local part
+        local found=false
 
-# env
-(which vim >/dev/null 2>&1) &&
-  unset EDITOR &&
-  export EDITOR=vim
+        for part in $(echo "$content" | awk 'BEGIN{RS=":"} {print}'); do
+          test "$part" = "$path" && found=true
+        done
+
+        if ! "$found"; then
+          export $variable="${content}:${path}"
+        fi
+      else
+        export $variable="$path"
+      fi
+    }
+}
+
+
+for editor in emacsclient mg vim vi; do
+  (which "$editor" >/dev/null 2>&1) &&
+    {
+      if test "$editor" = emacsclient; then
+        if test -n "$DISPLAY"; then
+          export EDITOR=emacsclient
+        else
+          export EDITOR="emacsclient -t"
+        fi
+        break
+      fi
+
+      export EDITOR="$editor"
+      break
+    }
+done
+
 
 (which less >/dev/null 2>&1) &&
   unset PAGER &&
   export PAGER=less
 
-# not sure why TERMINAL was set
-#export TERMINAL=/bin/terminator
-
-# rust
-test -d "${HOME}/.cargo" &&
-  export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # go
 test -d "${HOME}/sdk/go" &&
@@ -26,10 +52,16 @@ test -d "${HOME}/sdk/go" &&
   export PATH="${GOROOT}/bin:${PATH}" &&
   export GOPATH="$HOME"
 
+
+# rust
+append_export_if_exists PATH "${HOME}/.cargo/bin"
+
+
 # java
 test -d "${HOME}/sdk/jdk" &&
   export JAVA_HOME="${HOME}/sdk/jdk" &&
   export PATH="${JAVA_HOME}/bin:${PATH}"
+
 
 # OCaml OPAM configuration
 test -f "${HOME}/.opam/opam-init/init.sh" &&
@@ -37,68 +69,58 @@ test -f "${HOME}/.opam/opam-init/init.sh" &&
         . "${HOME}/.opam/opam-init/init.sh" >/dev/null 2>&1 || true
     }
 
+
 # bin dirs
-test -d "${HOME}/bin" &&
-  export PATH="${HOME}/bin:${PATH}"
-test -d "${HOME}/.local/bin" &&
-  export PATH="${HOME}/.local/bin:${PATH}"
+append_export_if_exists PATH "${HOME}/bin"
+append_export_if_exists PATH "${HOME}/.local/bin"
+
 
 # language
 # see /usr/share/locale/locale.alias for options
 test "$LANG" = "en_US.UTF-8" ||
-  {
-    unset LANG
-    export LANG="en_US.UTF-8"
-  }
+  export LANG="en_US.UTF-8"
+
 
 # dot files
 test -d "${HOME}/dot" &&
   export DOT_FILES_DIR="${HOME}/dot"
 
+
 # virtualenvwrapper
 test -d "${HOME}/.virtualenvs" &&
   export WORKON_HOME="${HOME}/.virtualenvs"
-test -d "${HOME}/projects" &&
-  export PROJECT_HOME="${HOME}/projects"
+test -d "${HOME}/src" &&
+  export PROJECT_HOME="${HOME}/src"
 
-# rust cargo
-test -d "${HOME}/.cargo/bin" &&
-    export PATH="${HOME}/.cargo/bin:${PATH}"
 
 # guix
+
 # install glibc-utf8-locales package
-test -e "${HOME}/.guix-profile/lib/locale" &&
-  export GUIX_LOCPATH="${HOME}/.guix-profile/lib/locale"
+append_export_if_exists GUIX_LOCPATH "${HOME}/.guix-profile/lib/locale"
 
-test -d "${HOME}/.guix-profile/bin" &&
-export PATH="${HOME}/.guix-profile/bin${PATH:+:}${PATH}"
+append_export_if_exists PATH "${HOME}/.guix-profile/bin"
+append_export_if_exists PATH "${HOME}/.guix-profile/sbin"
+append_export_if_exists JUPYTER_PATH "${HOME}/.guix-profile/share/jupyter"
+append_export_if_exists GUIX_GTK3_PATH "${HOME}/.guix-profile/lib/gtk-3.0"
+append_export_if_exists PYTHONPATH "${HOME}/.guix-profile/lib/python3.6/site-packages"
+append_export_if_exists GI_TYPELIB_PATH "${HOME}/.guix-profile/lib/girepository-1.0"
+append_export_if_exists XDG_DATA_DIRS "${HOME}/.guix-profile/share"
+append_export_if_exists GIO_EXTRA_MODULES "${HOME}/.guix-profile/lib/gio/modules"
+append_export_if_exists PATH "${HOME}/.config/guix/current/bin"
+append_export_if_exists INFOPATH "${HOME}/.guix-profile/share/info"
 
-test -d "${HOME}/.guix-profile/sbin" &&
-export PATH="${HOME}/.guix-profile/sbin${PATH:+:}${PATH}"
+# X.509
+# install nss-certs package
+append_export_if_exists SSL_CERT_DIR "${HOME}/.guix-profile/etc/ssl/certs"
+append_export_if_exists SSL_CERT_FILE="${HOME}/.guix-profile/etc/ssl/certs/ca-certificates.crt"
+append_export_if_exists CURL_CA_BUNDLE="$SSL_CERT_FILE"
+append_export_if_exists GIT_SSL_CAINFO="$SSL_CERT_FILE"
 
-export JUPYTER_PATH="${HOME}/.guix-profile/share/jupyter${JUPYTER_PATH:+:}$JUPYTER_PATH"
-export GUIX_GTK3_PATH="${HOME}/.guix-profile/lib/gtk-3.0${GUIX_GTK3_PATH:+:}$GUIX_GTK3_PATH"
-export PYTHONPATH="${HOME}/.guix-profile/lib/python3.6/site-packages${PYTHONPATH:+:}$PYTHONPATH"
-export GI_TYPELIB_PATH="${HOME}/.guix-profile/lib/girepository-1.0${GI_TYPELIB_PATH:+:}$GI_TYPELIB_PATH"
-export XDG_DATA_DIRS="${HOME}/.guix-profile/share${XDG_DATA_DIRS:+:}$XDG_DATA_DIRS"
-export GIO_EXTRA_MODULES="${HOME}/.guix-profile/lib/gio/modules${GIO_EXTRA_MODULES:+:}$GIO_EXTRA_MODULES"
+# git
+append_export_if_exists GIT_EXEC_PATH "${HOME}/.guix-profile/libexec/git-core"
 
 # list fonts with `xlsfonts`
 # query current user preferences of X (e.g. 'Font Path') with `xset q`
 guix_fonts_dir="${HOME}/.guix-profile/share/fonts/truetype/fonts.dir"
 readlink -e "$guix_fonts_dir" &&
-xset +fp $(dirname $(readlink -f "$guix_fonts_dir"))
-
-# X.509
-# install nss-certs package
-export SSL_CERT_DIR="${HOME}/.guix-profile/etc/ssl/certs"
-export SSL_CERT_FILE="${HOME}/.guix-profile/etc/ssl/certs/ca-certificates.crt"
-export CURL_CA_BUNDLE="$SSL_CERT_FILE"
-export GIT_SSL_CAINFO="$SSL_CERT_FILE"
-
-# git
-test -d "${HOME}/.guix-profile/libexec/git-core" &&
-export GIT_EXEC_PATH="${HOME}/.guix-profile/libexec/git-core"
-
-export PATH="${HOME}/.config/guix/current/bin${PATH:+:}$PATH"
-export INFOPATH="${HOME}/.guix-profile/share/info${INFOPATH:+:}$INFOPATH"
+  xset +fp $(dirname $(readlink -f "$guix_fonts_dir"))

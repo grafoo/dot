@@ -250,8 +250,47 @@ list_docker_tags() {
 }
 export -f list_docker_tags
 
+# open w3m and send arguments as query to duckduckgo
+unset w3s
+w3s ()
+{
+  local q=""
+  for a in "$@"; do
+    if test -n "$q"; then
+      q="${q}+${a}"
+    else
+      q="$a"
+    fi
+  done
+  w3m "https://duckduckgo.com/?q=$q"
+}
+export -f w3s
+
+# print first few entries in tar archive
+unset tarhead
+tarhead ()
+{
+  tar tf "$1" | head
+}
+export -f tarhead
+
+# invoke --help on arguments and pipe output to less
+unset helpless
+helpless ()
+{
+  "$@" --help | less
+}
+export -f helpless
+
+# parallel compilation with number of processors
+unset makenproc
+makenproc ()
+{
+  make -j $(nproc)
+}
+export -f makenproc
+
 alias less='less --RAW-CONTROL-CHARS'
-# alias ..='cd ..'
 shopt -s autocd                 # will work for .. as well
 alias ...='cd ../..'
 alias grepp='grep --color=auto --perl-regexp'
@@ -260,6 +299,7 @@ alias mpv_audio-channels_stereo='mpv --audio-channels=stereo'
 alias gpg-kill-agent='gpgconf --kill gpg-agent'
 alias download-firefox='curl -Lo firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"'
 alias ssh-no-pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
+alias mg='mg -n'
 
 start_ssh_agent
 
