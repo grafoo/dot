@@ -301,6 +301,10 @@ alias download-firefox='curl -Lo firefox.tar.bz2 "https://download.mozilla.org/?
 alias ssh-no-pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 alias mg='mg -n'
 
+# disable flow control
+# C-s gets mapped to i-search afterwards
+stty -ixon
+
 start_ssh_agent
 
 if test -n "$GUIX_ENVIRONMENT"; then
