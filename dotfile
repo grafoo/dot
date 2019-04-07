@@ -1,0 +1,91 @@
+#!/bin/bash
+
+set_dir_str ()
+{
+    declare -r tmp="$1"
+    test "/" == "${tmp:-1}" && files_dir="${tmp:0:-1}"
+    files_dir="${files_dir}/files"
+}
+
+list_files ()
+{
+    case "$1" in
+        available)
+            local f
+            for f in $(find "$files_dir" -type f)
+            do
+                echo "${f/$files_dir}" | sed 's#/##'
+            done
+            ;;
+        enabled)
+            local f
+            for f in $(find "$HOME" -type l -exec readlink {} \; | grep "$files_dir")
+            do
+                echo "${f/$files_dir}" | sed 's#/##'
+            done
+            ;;
+    esac
+}
+
+enable_file ()
+{
+    declare -r f="$1"
+    test -f "${files_dir}/${f}" || exit 1
+    declare -r dot_file="${dotfiles[${f}]}"
+    declare -r dot_file_dir=$(echo "${HOME}/${dot_file}" | awk -F "/" '{for(i=2; i<NF; i++) printf ("/%s",$i)}')
+    test -d "$dot_file_dir" || mkdir -p "$dot_file_dir"
+    test "$dot_file_dir" = "${HOME}/.config/gtk-3.0" &&
+        chmod 700 "$dot_file_dir"
+    echo -n "enabling ${dot_file} "
+    ln -s "${files_dir}/${f}" "${HOME}/${dot_file}" && echo "done" || echo "failed"
+}
+
+disable_file ()
+{
+    declare -r f="$1"
+    test -f "${files_dir}/${f}" || exit 1
+    declare -r dot_file="${dotfiles[${f}]}"
+    echo -n "disabling ${dot_file} "
+    rm "${HOME}/${dot_file}" && echo "done" || echo "failed"
+}
+
+print_help ()
+{
+    echo "$0 -l | -e | -d"
+}
+
+test ! "$#" -eq 2 &&
+    {
+        print_help
+        exit 1
+    }
+
+test -n "$DOTFILES" ||
+    {
+        echo "DOTFILES environment variable not set."
+        exit 1
+    }
+
+. "${DOTFILES}/global.sh"
+
+files_dir="$DOTFILES"
+set_dir_str "$files_dir"
+
+
+case "$1" in
+    -l)
+        list_files "$2"
+        ;;
+    -e)
+        enable_file "$2"
+        ;;
+    -d)
+        disable_file "$2"
+        ;;
+    *)
+        print_help
+        exit 2
+        ;;
+esac
+
+exit 0

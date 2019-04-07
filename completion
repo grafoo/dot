@@ -1,0 +1,33 @@
+__print_files_to ()
+{
+    . "$DOTFILES/global.sh"
+
+    local _f
+
+    case "$1" in
+        enable)
+            for _f in "${!dotfiles[@]}"; do
+                test ! -h "${HOME}/${dotfiles[$_f]}" && echo "$_f"
+            done
+            ;;
+        disable)
+            for _f in "${!dotfiles[@]}"; do
+                test -h "${HOME}/${dotfiles[$_f]}" && echo "$_f"
+            done
+            ;;
+    esac
+}
+
+_dotfile ()
+{
+    case "${COMP_WORDS[1]}" in
+        -e)
+            COMPREPLY=($(compgen -W "$(__print_files_to enable)" "$2"))
+            ;;
+        -d)
+            COMPREPLY=($(compgen -W "$(__print_files_to disable)" "$2"))
+            ;;
+    esac
+}
+
+complete -F _dotfile dotfile

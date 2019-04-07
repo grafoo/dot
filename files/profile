@@ -81,9 +81,8 @@ test "$LANG" = "en_US.UTF-8" ||
   export LANG="en_US.UTF-8"
 
 
-# dot files
-test -d "${HOME}/dot" &&
-  export DOT_FILES_DIR="${HOME}/dot"
+# dotfiles
+export DOTFILES="${HOME}/.dotfiles"
 
 
 # virtualenvwrapper
