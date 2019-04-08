@@ -6,6 +6,7 @@ declare -A dotfiles=(
     ["bashrc"]=".bashrc"
     ["conky.conf"]=".config/conky/conky.conf"
     ["emacs"]=".emacs"
+    ["firefox/userChrome.css"]=".mozilla/firefox/*.default/userChrome.css"
     ["gitconfig"]=".gitconfig"
     ["gitconfig.user"]=".gitconfig.user"
     ["gtk-3.0_settings.ini"]=".config/gtk-3.0/settings.ini"
@@ -26,4 +27,3 @@ declare -A dotfiles=(
     ["vim/vimrc_plugins"]=".vimrc_plugins"
     ["xinitrc"]=".xinitrc"
 )
-

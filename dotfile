@@ -31,13 +31,36 @@ enable_file ()
 {
     declare -r f="$1"
     test -f "${files_dir}/${f}" || exit 1
-    declare -r dot_file="${dotfiles[${f}]}"
-    declare -r dot_file_dir=$(echo "${HOME}/${dot_file}" | awk -F "/" '{for(i=2; i<NF; i++) printf ("/%s",$i)}')
-    test -d "$dot_file_dir" || mkdir -p "$dot_file_dir"
-    test "$dot_file_dir" = "${HOME}/.config/gtk-3.0" &&
-        chmod 700 "$dot_file_dir"
-    echo -n "enabling ${dot_file} "
-    ln -s "${files_dir}/${f}" "${HOME}/${dot_file}" && echo "done" || echo "failed"
+
+    case "$f" in
+        # firefox profile gets special treatment due to the random directory name
+        firefox/userChrome.css)
+            local tmp=$(dirname $HOME/${dotfiles[${f}]})
+            declare -r dot_file_dir=$(realpath $tmp)
+
+            test "$dot_file_dir" = "${HOME}/.mozilla/firefox/*.default" &&
+                echo "default firefox profile doesn't exist." &&
+                exit 1
+
+            test -d "${dot_file_dir}/chrome" || mkdir -p "${dot_file_dir}/chrome"
+
+            echo -n "enabling ${f} "
+            ln -s "${files_dir}/${f}" "${dot_file_dir}/chrome/userChrome.css" 2>/dev/null && echo "done" || echo "failed"
+            ;;
+        *)
+            declare -r dot_file="${dotfiles[${f}]}"
+            declare -r dot_file_dir=$(echo "${HOME}/${dot_file}" | awk -F "/" '{for(i=2; i<NF; i++) printf ("/%s",$i)}')
+
+            test -d "$dot_file_dir" || mkdir -p "$dot_file_dir"
+
+            # fucking gtk; it's all about security right?
+            test "$dot_file_dir" = "${HOME}/.config/gtk-3.0" &&
+                chmod 700 "$dot_file_dir"
+
+            echo -n "enabling ${dot_file} "
+            ln -s "${files_dir}/${f}" "${HOME}/${dot_file}" 2>/dev/null && echo "done" || echo "failed"
+            ;;
+    esac
 }
 
 disable_file ()
