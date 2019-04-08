@@ -124,3 +124,7 @@ bindsym $mod+Mod1+l exec i3lock
 
 # https://i3wm.org/docs/userguide.html#_mouse_warping
 mouse_warping none
+
+# control display brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id brightne.sh +50
+bindsym XF86MonBrightnessDown exec --no-startup-id brightne.sh -50
