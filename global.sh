@@ -25,5 +25,6 @@ declare -A dotfiles=(
     ["tmux.conf"]=".tmux.conf"
     ["vim/vimrc"]=".vimrc"
     ["vim/vimrc_plugins"]=".vimrc_plugins"
+    ["w3m/config]=".w3m/config"
     ["xinitrc"]=".xinitrc"
 )

@@ -1,0 +1,1 @@
+extbrowser url=%s && printf %s "$url" | xsel --clipboard
