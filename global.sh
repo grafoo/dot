@@ -13,6 +13,7 @@ declare -A dotfiles=(
     ["gtkrc-2.0"]=".gtkrc-2.0"
     ["i3/config"]=".config/i3/config"
     ["index.theme"]=".icons/default/index.theme"
+    ["inputrc"]=".inputrc"
     ["jackdrc"]=".jackdrc"
     ["lein/profiles.clj"]=".lein/profiles.clj"
     ["openbox/autostart"]=".config/openbox/autostart"
