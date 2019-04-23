@@ -1,4 +1,5 @@
 declare -A dotfiles=(
+    ["qemacs/config"]=".qe/config"
     ["Xresources"]=".Xresources"
     ["asoundrc"]=".asoundrc"
     ["bash_logout"]=".bash_logout"

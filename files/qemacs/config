@@ -1,0 +1,35 @@
+// gruvbox colour scheme
+set_style("default", "background-color", "#FBF1C7");
+set_style("default", "color", "#3C3836");
+set_style("minibuf", "background-color", "#FBF1C7");
+set_style("minibuf", "color", "#3C3836");
+set_style("status", "color", "#3C3836");
+set_style("status", "background-color", "#FBF1C7");
+set_style("selection", "color", "#7C6F64");
+set_style("selection", "background-color", "#D5C4A1");
+set_style("search-match", "color", "#282828");
+set_style("search-match", "background-color", "#FABD2F");
+set_style("region-hilite", "color", "#7C6F64");
+set_style("region-hilite", "background-color", "#D5C4A1");
+set_style("comment", "color", "#928374");
+set_style("preprocess", "color", "#427b58");
+set_style("string", "color", "#79740E");
+// TODO: set_style("string-q", "color", "");
+set_style("keyword", "color", "#9D0006");
+set_style("number", "color", "#8F3F71");
+set_style("function", "color", "#79740E");
+set_style("function", "font-weight", "bold");
+// TODO: set_style("variable", "color", "");
+set_style("type", "color", "#B57614");
+// TODO: set_style("tag", "color", "");
+// TODO: set_style("css", "color", "");
+set_style("error", "color", "#282828");
+set_style("error", "background-color", "#FB4934");
+set_style("error", "font-weight", "bold");
+
+// key bindings
+global_set_key("M-TAB", "other-window");
+global_set_key("M-0", "delete-window");
+global_set_key("M-1", "delete-other-windows");
+global_set_key("M-2", "split-window-vertically");
+global_set_key("M-3", "split-window-horizontally");
