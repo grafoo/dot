@@ -1,0 +1,4 @@
+[sendemail]
+	smtpEncryption = 
+	smtpServer = 
+	smtpUser = 
