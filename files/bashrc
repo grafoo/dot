@@ -117,10 +117,6 @@ export -f rpmq
 # use virtualenv of python2 when on archlinux
 which virtualenv2 >/dev/null 2>&1 && alias virtualenv='virtualenv2'
 
-alias emacs='emacs --no-window-system'
-alias emd='emacs --daemon'
-alias emc='emacsclient -nw'
-
 unset nx
 nx() {
   case "$1" in
