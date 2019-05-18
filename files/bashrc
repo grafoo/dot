@@ -303,6 +303,35 @@ install_fira_mono ()
 }
 export -f install_fira_mono
 
+
+# encrypt/decrypt strings and files
+
+# read string from stdin and write stdout
+unset encrypt
+encrypt ()
+{
+    echo -n "$1" |
+        openssl enc -aes-256-cbc -e -a -salt -in /dev/stdin -out /dev/stdout
+}
+export -f encrypt
+
+# read string from stdin and copy to clipboard or write to stdout
+unset decrypt
+decrypt ()
+{
+    local _clipboard_tool=tee
+    type -p xsel 2>&1 >/dev/null &&
+        _clipboard_tool="xsel -b"
+    type -p xclip 2>&1 >/dev/null &&
+        _clipboard_tool="xclip -i -selection clipboard"
+
+    openssl enc -aes-256-cbc -d -a -salt -in /dev/stdin -out /dev/stdout |
+        tr -d '\n' |
+        $_clipboard_tool
+}
+export -f decrypt
+
+
 unset activate_red_block_cursor
 activate_red_block_cursor ()
 {
