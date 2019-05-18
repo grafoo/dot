@@ -1,6 +1,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
+# ls
+
 unset l
 l() {
   case "$#" in
@@ -58,12 +61,19 @@ l() {
   esac
 }
 export -f l
+
 alias ll='ls --color -l'
 alias la='ls --color -la'
 alias lt='ls --color -lth'
 alias lr='ls --color -lrh'
 
+
+# rm
+
 alias rr='rm -rf'
+
+
+# rpm
 
 unset rpmx
 rpmx() {
@@ -92,8 +102,8 @@ rpmq() {
 }
 export -f rpmq
 
-# use virtualenv of python2 when on archlinux
-which virtualenv2 >/dev/null 2>&1 && alias virtualenv='virtualenv2'
+
+# nix
 
 unset nx
 nx() {
@@ -348,6 +358,8 @@ setup_keymap ()
 export -f setup_keymap
 
 
+# grep
+
 # recursive grep for string in *.c and *.h files
 unset rgrepnch
 rgrepnch ()
@@ -355,6 +367,10 @@ rgrepnch ()
     rgrep -n "$1" *.[ch]
 }
 export -f rgrepnch
+
+alias grepp='grep --color=auto --perl-regexp'
+
+alias grepi='grep --color=auto --ignore-case'
 
 
 unset activate_red_block_cursor
@@ -370,8 +386,6 @@ export -f activate_red_block_cursor
 alias less='less --RAW-CONTROL-CHARS'
 shopt -s autocd                 # will work for .. as well
 alias ...='cd ../..'
-alias grepp='grep --color=auto --perl-regexp'
-alias grepi='grep --color=auto --ignore-case'
 alias mpv_audio-channels_stereo='mpv --audio-channels=stereo'
 alias gpg-kill-agent='gpgconf --kill gpg-agent'
 alias download-firefox='curl -Lo firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"'
