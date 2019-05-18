@@ -362,6 +362,16 @@ setup_keymap ()
 }
 export -f setup_keymap
 
+
+# recursive grep for string in *.c and *.h files
+unset rgrepnch
+rgrepnch ()
+{
+    rgrep -n "$1" *.[ch]
+}
+export -f rgrepnch
+
+
 unset activate_red_block_cursor
 activate_red_block_cursor ()
 {
