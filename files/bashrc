@@ -241,8 +241,13 @@ export -f start_x11vnc
 
 unset list_docker_tags
 list_docker_tags() {
-  type -p curl && type -p jq || exit 1
-  curl -L "https://registry.hub.docker.com/v1/repositories/${1}/tags" | jq
+    type -p curl && type -p jq ||
+            {
+                echo "curl and jq needed."
+                exit 1
+            }
+
+    curl -sL "https://registry.hub.docker.com/v1/repositories/${1}/tags" | jq
 }
 export -f list_docker_tags
 
