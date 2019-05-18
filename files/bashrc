@@ -291,6 +291,9 @@ makenproc ()
 }
 export -f makenproc
 
+
+# installation commands
+
 unset install_fira_mono
 install_fira_mono ()
 {
@@ -302,6 +305,10 @@ install_fira_mono ()
     fc-cache -r
 }
 export -f install_fira_mono
+
+alias install-pip='curl -Lo /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py && python3 /tmp/get-pip.py --user'
+
+alias install-fossil='curl -L https://www.fossil-scm.org/fossil/uv/fossil-linux-x64-2.8.tar.gz | tar xzf /dev/stdin -C "${HOME}/bin"'
 
 
 # encrypt/decrypt strings and files
