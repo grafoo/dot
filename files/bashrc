@@ -291,6 +291,18 @@ makenproc ()
 }
 export -f makenproc
 
+unset install_fira_mono
+install_fira_mono ()
+{
+    mkdir -p ~/.local/share/fonts
+    echo -ne "Regular\0Medium\0Bold" |
+        xargs -0 -I% \
+              curl -Lo "${HOME}/.local/share/fonts/FiraMono-%.ttf" \
+              "https://github.com/mozilla/Fira/raw/master/ttf/FiraMono-%.ttf"
+    fc-cache -r
+}
+export -f install_fira_mono
+
 unset activate_red_block_cursor
 activate_red_block_cursor ()
 {
