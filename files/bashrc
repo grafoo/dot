@@ -1,28 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-aliases=(
-  l
-  ll
-  la
-  lt
-  lr
-  rr
-  virtualenv
-  emacs
-  emd
-  emc
-  less
-  ..
-  ...
-  grepp
-)
-
-for a in "${aliases[@]}"
-do
-  unalias "$a" 2>/dev/null
-done
-
 unset l
 l() {
   case "$#" in
