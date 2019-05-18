@@ -366,6 +366,7 @@ activate_red_block_cursor ()
 }
 export -f activate_red_block_cursor
 
+
 alias less='less --RAW-CONTROL-CHARS'
 shopt -s autocd                 # will work for .. as well
 alias ...='cd ../..'
@@ -376,6 +377,7 @@ alias gpg-kill-agent='gpgconf --kill gpg-agent'
 alias download-firefox='curl -Lo firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"'
 alias ssh-no-pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 alias mg='mg -n'
+alias cvs-status='cvs -qn update'
 
 # disable flow control
 # C-s gets mapped to i-search afterwards
