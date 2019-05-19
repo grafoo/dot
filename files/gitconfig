@@ -13,10 +13,12 @@
 	s = status
 	a = add
 	aa = add --all
+	ap = add --patch
 	co = checkout
 	cb = checkout -b
 	c = commit
 	ca = commit -a
+	cm = commit -m
 	p = push
 	d = diff
 	ds = diff --staged
@@ -33,6 +35,7 @@
 	rv = remote -v
 	fa = fetch --all
 	sms = submodule status
+	u = reset HEAD
 [push]
 	default = simple
 [filter "lfs"]
