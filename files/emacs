@@ -5,28 +5,8 @@
 
 ;;; Code:
 
-(menu-bar-mode -1)
-
-(electric-pair-mode)
-
-;; replace selected text in region
-(delete-selection-mode)
-
-;; underline postition setting for Xorg
-(setq x-underline-at-descent-line t)
-
 ;; performance improvement when displaying long lines
 (setq-default bidi-display-reordering nil)
-
-;; watch files for changes and auto revert matching buffers
-(global-auto-revert-mode)
-
-(setq whitespace-style '(face tabs trailing lines-tail))
-(setq whitespace-global-modes '(not eshell-mode))
-(global-whitespace-mode)
-
-;; un-/redo window changes with ‘C-c <left>’ ‘C-c <right>’
-(winner-mode)
 
 ;; https://www.emacswiki.org/emacs/ToggleWindowSplit
 (defun toggle-window-split ()
@@ -61,11 +41,6 @@
 (add-to-list 'auto-mode-alist '("SConstruct" . python-mode))
 (add-to-list 'auto-mode-alist '("SConscript" . python-mode))
 
-(ido-mode)
-(ido-everywhere)
-; (require 'flx-ido)
-; (flx-ido-mode t)
-(setq ido-enable-flex-matching t)
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -235,11 +210,6 @@
 
 ;; disable custom keybindings in minibuffer
 (add-hook 'minibuffer-setup-hook '(lambda () (my-keybindings nil)))
-
-
-;;; c
-
-;; (setq-default c-basic-offset 2)
 
 
 ;;; elisp
@@ -422,14 +392,24 @@
  ;; If there is more than one, they won't work right.
  '(auto-save-default nil)
  '(blink-cursor-mode nil)
+ '(c-basic-offset 4)
+ '(delete-selection-mode t)
+ '(electric-pair-mode t)
  '(epa-pinentry-mode (quote loopback))
+ '(flx-ido-mode t)
  '(frame-resize-pixelwise t)
+ '(global-auto-revert-mode t)
+ '(global-whitespace-mode t)
+ '(ido-enable-flex-matching t)
+ '(ido-everywhere t)
+ '(ido-mode (quote both) nil (ido))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(line-number-mode nil)
  '(make-backup-files nil)
+ '(menu-bar-mode nil)
  '(org-log-done (quote note))
- '(org-startup-truncated nil)
+ '(org-startup-truncated nil t)
  '(org-tags-column 0)
  '(package-selected-packages
    (quote
@@ -442,6 +422,9 @@
  '(tooltip-mode nil)
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
+ '(whitespace-global-modes (quote (not eshell-mode)))
+ '(whitespace-style (quote (face trailing lines-tail)))
+ '(winner-mode t)
  '(x-underline-at-descent-line t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
