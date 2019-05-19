@@ -123,3 +123,7 @@ append_export_if_exists GIT_EXEC_PATH "${HOME}/.guix-profile/libexec/git-core"
 guix_fonts_dir="${HOME}/.guix-profile/share/fonts/truetype/fonts.dir"
 readlink -e "$guix_fonts_dir" &&
   xset +fp $(dirname $(readlink -f "$guix_fonts_dir"))
+
+test "$TERM" = linux &&
+    test "$USER" = root && echo 0 > /sys/class/graphics/fbcon/cursor_blink ||
+        sudo -v && sudo sh -c 'echo 0 > /sys/class/graphics/fbcon/cursor_blink'
