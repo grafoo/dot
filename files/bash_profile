@@ -5,6 +5,10 @@ test -f "${HOME}/.profile" &&
 test -f "${HOME}/.bashrc" &&
   source "${HOME}/.bashrc"
 
+test "$TERM" = linux &&
+    type setup_keymap >/dev/null &&
+    setup_keymap
+
 # don't put duplicate lines or lines starting with space in the history
 export HISTCONTROL=ignoreboth
 
