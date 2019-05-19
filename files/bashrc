@@ -392,6 +392,7 @@ alias download-firefox='curl -Lo firefox.tar.bz2 "https://download.mozilla.org/?
 alias ssh-no-pubkey='ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no'
 alias mg='mg -n'
 alias cvs-status='cvs -qn update'
+alias standby="test $USER = root && echo mem > /sys/power/state || sudo sh -c 'echo mem > /sys/power/state'"
 
 # disable flow control
 # C-s gets mapped to i-search afterwards
