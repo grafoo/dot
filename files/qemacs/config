@@ -33,3 +33,6 @@ global_set_key("M-0", "delete-window");
 global_set_key("M-1", "delete-other-windows");
 global_set_key("M-2", "split-window-vertically");
 global_set_key("M-3", "split-window-horizontally");
+
+// variables
+set_variable("backup-inhibited", "1");
