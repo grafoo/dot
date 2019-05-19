@@ -23,7 +23,7 @@ append_export_if_exists ()
 }
 
 
-for editor in emacsclient mg vim vi; do
+for editor in emacsclient qe mg vi vim; do
   (which "$editor" >/dev/null 2>&1) &&
     {
       if test "$editor" = emacsclient; then
