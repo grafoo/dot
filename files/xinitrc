@@ -5,7 +5,8 @@
 # setxkbmap -layout de -variant nodeadkeys -option "caps:escape"
 
 # set layout to great britain and remap caps to an additional control
-setxkbmap -layout gb -option "ctrl:nocaps"
+which setxkbmap >/dev/null &&
+    setxkbmap -layout gb -option "ctrl:nocaps"
 
 #tpset() {
 # xinput set-prop "TPPS/2 IBM TrackPoint" "$@";
