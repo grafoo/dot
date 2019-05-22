@@ -127,3 +127,6 @@ readlink -e "$guix_fonts_dir" &&
 test "$TERM" = linux &&
     test "$USER" = root && echo 0 > /sys/class/graphics/fbcon/cursor_blink ||
         sudo -v && sudo sh -c 'echo 0 > /sys/class/graphics/fbcon/cursor_blink'
+
+test -f "${HOME}/src/werkzeug/lib.sh" &&
+    export LIBSH="${HOME}/src/werkzeug/lib.sh"
