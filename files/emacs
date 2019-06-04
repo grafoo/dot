@@ -352,7 +352,12 @@
                              '(lambda ()
                                 (interactive)
                                 (org-mime-htmlize)
-                                (message-send-and-exit))))))
+                                (message-send-and-exit)))))
+  (add-hook 'mu4e-headers-mode-hook
+            (lambda ()
+              (local-set-key
+               (kbd "C-c C-l")
+               #'org-store-link))))
 
 
 
@@ -414,8 +419,9 @@
  '(line-number-mode nil)
  '(make-backup-files nil)
  '(menu-bar-mode nil)
+ '(org-agenda-files "~/.agenda_files")
  '(org-log-done (quote note))
- '(org-startup-truncated nil t)
+ '(org-startup-truncated nil)
  '(org-tags-column 0)
  '(package-selected-packages
    (quote
