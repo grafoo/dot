@@ -9,6 +9,8 @@ floating_modifier $mod
 # bindsym $mod+Return exec i3-sensible-terminal
 # launch st or nothing
 bindsym $mod+Return exec st -f 'Fira Mono:size=12:antialias=true:autohint=true'
+bindsym $mod+m exec rofi -show run -run-command 'chromium-app-mode search \\"{cmd}\\"'
+bindsym $mod+n exec rofi -show run -run-command 'chromium-app-mode url \\"{cmd}\\"'
 
 # kill focused window
 bindsym $mod+Shift+q kill

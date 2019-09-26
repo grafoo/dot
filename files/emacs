@@ -316,8 +316,9 @@
 (setq org-startup-truncated nil)
 
 
-(add-to-list 'default-frame-alist
-             '(font . "Fira Mono"))
+(when (member "Fira Mono" (font-family-list))
+  (add-to-list 'default-frame-alist
+               '(font . "Fira Mono")))
 
 (setq rcirc-server-alist '(("irc.freenode.net" :port 6697 :encryption tls :nick "grafoo")))
 

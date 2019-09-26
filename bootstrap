@@ -1,0 +1,11 @@
+#!/bin/bash
+bootstrap() {
+    local _dotfiles_basedir="$(realpath $(dirname ${0}))"
+    local _file
+    for _file in bashrc bash_profile profile; do
+        ln -sf "${_dotfiles_basedir}/files/${_file}" "${HOME}/.${_file}"
+    done
+    mkdir -p "${HOME}/bin" &&
+        ln -sf "${_dotfiles_basedir}/dotfile" "${HOME}/bin/"
+}
+bootstrap
