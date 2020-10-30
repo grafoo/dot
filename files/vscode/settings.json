@@ -2,7 +2,7 @@
     "files.eol": "\n",
     "[markdown]": {
     "editor.wordWrapColumn": 80,
-    
+
         "editor.wordWrap": "wordWrapColumn",
         "editor.quickSuggestions": false
     },
@@ -71,6 +71,8 @@
         "Schenkungsverträgen",
         "Stabilit",
         "Stabilitätserhöhung",
+        "Staatssekret",
+        "Staatssekretätre",
         "Synallagma",
         "Testierfreiheit",
         "Transferierung",
@@ -99,6 +101,7 @@
         "bermittlungsanstalt",
         "bliche",
         "causa",
+        "cksichtigungspflicht",
         "contraria",
         "essentialia",
         "ft",
@@ -131,6 +134,8 @@
         "stabilit",
         "stabilitätserhöhung",
         "taxative",
+        "tere",
+        "tre",
         "tserh",
         "tsprinzip",
         "undurchbrochene",
