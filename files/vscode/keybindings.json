@@ -1,4 +1,5 @@
 // Place your key bindings in this file to override the defaults
+// available 'when' clause contexts: https://code.visualstudio.com/docs/getstarted/keybindings#_available-contexts
 [
     {
         "key": "ctrl+t",
@@ -67,22 +68,22 @@
         "key": "ctrl+g",
         "command": "editor.action.cancelSelectionAnchor",
         "when": "editorTextFocus && selectionAnchorSet"
-      },
-      {
+    },
+    {
         "key": "ctrl+g",
         "command": "cancelSelection",
         "when": "editorHasSelection && textInputFocus"
-      },
+    },
     {
         "key": "ctrl+p",
         "command": "cursorUp",
         "when": "textInputFocus"
-      },
-      {
+    },
+    {
         "key": "ctrl+n",
         "command": "cursorDown",
         "when": "textInputFocus"
-      },
+    },
     {
         "key": "alt+x b",
         "command": "markdown.extension.editing.toggleBold",
@@ -120,8 +121,10 @@
     },
     {
         "key": "alt+backspace",
-        "command": "extension.multiCommand.execute" , 
-        "args": { "command": "multiCommand.backwardKillWord" },
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "command": "multiCommand.backwardKillWord"
+        },
         "when": "textInputFocus && !editorReadonly"
     },
     {
@@ -137,8 +140,8 @@
     {
         "key": "ctrl+w",
         "command": "editor.action.clipboardCutAction"
-      },
-      {
+    },
+    {
         "key": "alt+w",
         "command": "editor.action.clipboardCopyAction"
     },
@@ -147,7 +150,7 @@
         "command": "editor.action.insertLineBefore",
         "when": "editorTextFocus && !editorReadonly"
     },
-      {
+    {
         "key": "shift+alt+oem_period",
         "command": "cursorBottom",
         "when": "textInputFocus"
@@ -173,8 +176,8 @@
         "key": "ctrl+g",
         "command": "editor.cancelOperation",
         "when": "cancellableOperation"
-      },
-/*     {
+    },
+    /*     {
         "key": "ctrl+v",
         "command": "cursorPageDown",
         "when": "textInputFocus"
@@ -279,5 +282,18 @@
     {
         "key": "ctrl+b",
         "command": "-workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+x d",
+        "command": "workbench.view.debug"
+    },
+    {
+        "key": "ctrl+shift+d",
+        "command": "-workbench.view.debug"
     }
 ]
