@@ -295,5 +295,7 @@
     {
         "key": "ctrl+shift+d",
         "command": "-workbench.view.debug"
-    }
+    },
+    { "key": "ctrl+f", "command": "-workbench.action.terminal.focusFind",
+        "when": "terminalFocus" },
 ]
