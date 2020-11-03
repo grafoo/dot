@@ -85,7 +85,7 @@
         "when": "textInputFocus"
     },
     {
-        "key": "alt+x b",
+        "key": "alt+o",
         "command": "markdown.extension.editing.toggleBold",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
     },
@@ -296,6 +296,9 @@
         "key": "ctrl+shift+d",
         "command": "-workbench.view.debug"
     },
-    { "key": "ctrl+f", "command": "-workbench.action.terminal.focusFind",
-        "when": "terminalFocus" },
+    {
+        "key": "ctrl+f",
+        "command": "-workbench.action.terminal.focusFind",
+        "when": "terminalFindFocused && terminalProcessSupported || terminalFocus && terminalProcessSupported"
+    },
 ]

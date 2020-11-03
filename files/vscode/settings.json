@@ -93,6 +93,7 @@
         "Wimmer",
         "abbedungen",
         "accidentialia",
+        "archein",
         "ausgeschalten",
         "berlegungsfrist",
         "bermittlungsanstalt",
@@ -114,12 +115,14 @@
         "lligkeitszusage",
         "llungs",
         "lzl",
+        "monos",
         "naturalia",
         "nde",
         "negotii",
         "nktheit",
         "offerendum",
         "ponere",
+        "publica",
         "publizit",
         "publizitätsprinzip",
         "rter",
@@ -156,5 +159,7 @@
     "python.formatting.provider": "black",
     "python.showStartPage": false,
     "terminal.integrated.allowChords": false,
-    "terminal.integrated.copyOnSelection": true
+    "terminal.integrated.copyOnSelection": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true
 }
