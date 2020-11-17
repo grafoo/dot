@@ -6,11 +6,14 @@
 	a = add
 	aa = add --all
 	ap = add --patch
+	au = add -u
 	b = branch
 	ba = branch -a
 	bv = branch -vv
 	c = commit
-	ca = commit -a
+	ca = commit --amend
+	cam = commit --amend -m
+	can = commit --amend --no-edit
 	cb = checkout -b
 	cm = commit -m
 	co = checkout
@@ -27,6 +30,7 @@
 	ln = log --oneline --name-status
 	lo = log --oneline --name-only
 	lt = ls-tree -r
+	o = checkout
 	p = push
 	rv = remote -v
 	s = status
@@ -35,7 +39,7 @@
 	sns = show --name-status
 	ss = stash show -p
 	st = show --stat
-	u = reset HEAD
+	u = reset HEAD # newer versions will have `restore --staged` available
 [push]
 	default = simple
 [filter "lfs"]
