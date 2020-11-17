@@ -1,40 +1,40 @@
 [include]
 	path = .gitconfig.user
-        path = .gitconfig.sendemail
+	path = .gitconfig.sendemail
 [alias]
-	l = log --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
-	la = log --all --tags --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
-	lo = log --oneline --name-only
-	ln = log --oneline --name-status
-	lf = log --follow
-	lao = log --all --graph --decorate --oneline --name-only
-	las = log --all --graph --decorate --oneline --name-status
-	lt = ls-tree -r
-	s = status
+	#sns = show --name-status --pretty=''
 	a = add
 	aa = add --all
 	ap = add --patch
-	co = checkout
-	cb = checkout -b
-	c = commit
-	ca = commit -a
-	cm = commit -m
-	p = push
-	d = diff
-	ds = diff --staged
-	dno = diff --name-only
-	dns = diff --name-status
 	b = branch
 	ba = branch -a
 	bv = branch -vv
-	ss = stash show -p
-	st = show --stat
+	c = commit
+	ca = commit -a
+	cb = checkout -b
+	cm = commit -m
+	co = checkout
+	d = diff
+	dno = diff --name-only
+	dns = diff --name-status
+	ds = diff --staged
+	fa = fetch --all
+	l = log --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	la = log --all --tags --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	lao = log --all --graph --decorate --oneline --name-only
+	las = log --all --graph --decorate --oneline --name-status
+	lf = log --follow
+	ln = log --oneline --name-status
+	lo = log --oneline --name-only
+	lt = ls-tree -r
+	p = push
+	rv = remote -v
+	s = status
+	sms = submodule status
 	sno = show --name-only
 	sns = show --name-status
-	#sns = show --name-status --pretty=''
-	rv = remote -v
-	fa = fetch --all
-	sms = submodule status
+	ss = stash show -p
+	st = show --stat
 	u = reset HEAD
 [push]
 	default = simple
