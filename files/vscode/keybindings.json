@@ -75,6 +75,11 @@
         "when": "editorHasSelection && textInputFocus"
     },
     {
+        "key": "ctrl+g",
+        "command": "search.action.cancel",
+        "when": "listFocus && searchViewletVisible && !inputFocus"
+    },
+    {
         "key": "ctrl+p",
         "command": "cursorUp",
         "when": "textInputFocus"
@@ -138,10 +143,6 @@
         "when": "textInputFocus && !editorReadonly"
     },
     {
-        "key": "ctrl+w",
-        "command": "editor.action.clipboardCutAction"
-    },
-    {
         "key": "alt+w",
         "command": "editor.action.clipboardCopyAction"
     },
@@ -202,7 +203,7 @@
     //    "command": "editor.action.clipboardPasteAction"
     //},
     {
-        "key": "alt+x c",
+        "key": "alt+q",
         "command": "markdown.extension.checkTaskList",
         "when": "editorTextFocus && editorLangId == 'markdown'"
     },
@@ -250,16 +251,6 @@
         "command": "editor.action.openLink"
     },
     {
-        "key": "ctrl+l",
-        "command": "scrollPageDown",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "alt+pagedown",
-        "command": "-scrollPageDown",
-        "when": "textInputFocus"
-    },
-    {
         "key": "alt+x s",
         "command": "workbench.view.scm"
     },
@@ -300,5 +291,37 @@
         "key": "ctrl+f",
         "command": "-workbench.action.terminal.focusFind",
         "when": "terminalFindFocused && terminalProcessSupported || terminalFocus && terminalProcessSupported"
-    }
+    },
+    {
+        "key": "ctrl+p",
+        "command": "list.focusUp",
+        "when": "filesExplorerFocus || inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "list.focusDown",
+        "when": "filesExplorerFocus ||inQuickOpen||referenceSearchVisible||inReferenceSearchEditor||inSnippetMode||listFocus"
+    },
+    {
+        "key": "shift+alt+s",
+        "command": "markdown.extension.editing.toggleStrikethrough",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+s",
+        "command": "-markdown.extension.editing.toggleStrikethrough",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+s",
+        "command": "editor.action.smartSelect.grow"
+    },
+    {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.files.openFile"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile"
+    },
 ]
