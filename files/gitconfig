@@ -14,15 +14,14 @@
 	ca = commit --amend
 	cam = commit --amend -m
 	can = commit --amend --no-edit
-	cb = checkout -b
 	cm = commit -m
-	co = checkout
 	d = diff
 	dno = diff --name-only
 	dns = diff --name-status
 	ds = diff --staged
 	fa = fetch --all
 	l = log --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	l1 = log -n 1
 	la = log --all --tags --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
 	lao = log --all --graph --decorate --oneline --name-only
 	las = log --all --graph --decorate --oneline --name-status
@@ -37,6 +36,7 @@
 	sms = submodule status
 	sno = show --name-only
 	sns = show --name-status
+	sons = show --oneline --name-status
 	ss = stash show -p
 	st = show --stat
 	u = reset HEAD # newer versions will have `restore --staged` available
@@ -49,3 +49,9 @@
 	required = true
 [pull]
 	rebase = true
+[core]
+	quotepath = false
+	commitGraph = true
+	sshCommand = C:/WINDOWS/System32/OpenSSH/ssh.exe
+[gc]
+	writeCommitGraph = true
