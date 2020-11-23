@@ -20,9 +20,9 @@
 	dns = diff --name-status
 	ds = diff --staged
 	fa = fetch --all
-	l = log --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	l = log --graph --pretty=format:'%Cblue %h %Creset %Cred %an %Creset %s %Cgreen %d %Creset'
 	l1 = log -n 1
-	la = log --all --tags --graph --pretty=format:'%Cgreen %d %Creset %Cred %an %Creset %Cblue %h %Creset %s'
+	la = log --all --tags --graph --pretty=format:'%Cblue %h %Creset %Cred %an %Creset %s %Cgreen %d %Creset'
 	lao = log --all --graph --decorate --oneline --name-only
 	las = log --all --graph --decorate --oneline --name-status
 	lf = log --follow
