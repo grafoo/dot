@@ -14,7 +14,7 @@
     "files.insertFinalNewline": true,
     "workbench.statusBar.visible": true,
     "editor.minimap.enabled": false,
-    "cSpell.language": ",de",
+    "cSpell.language": "en,de",
     "cSpell.userWords": [
         "ABGB",
         "AEUV",
