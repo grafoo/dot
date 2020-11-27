@@ -23,6 +23,14 @@
 	 	],
 	 	"description": "Add Artikel with Absatz for B-VG"
 	 },
+	//  "Art Abs B-VG Parens": {
+	// 	"scope": "markdown",
+	// 	"prefix": "(aab)" ,
+	// 	"body": [
+	// 		"(Art $1 Abs $2 B-VG"
+	// 	],
+	// 	"description": "Add Artikel with Absatz for B-VG"
+	// },
 	 "Art B-VG": {
 		"scope": "markdown",
 		"prefix": "ab",
@@ -30,5 +38,13 @@
 			"Art $1 B-VG"
 		],
 		"description": "Add Artikel for B-VG"
-	}
+	},
+	"Comment Stream": {
+		"scope": "markdown",
+		"prefix": "cs",
+		"body": [
+			"<!-- BEGIN Stream -->\n$1\n<!-- END Stream -->"
+		],
+		"description": "Comment block for MMJUS Stream"
+	},
 }

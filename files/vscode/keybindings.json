@@ -2,7 +2,7 @@
 // available 'when' clause contexts: https://code.visualstudio.com/docs/getstarted/keybindings#_available-contexts
 [
     {
-        "key": "ctrl+t",
+        "key": "alt+t",
         "command": "editor.action.transpose"
     },
     {
@@ -132,6 +132,18 @@
         },
         "when": "textInputFocus && !editorReadonly"
     },
+
+    // {
+    //     "key": "ctrl+k ctrl+k",
+    //     "command": "extension.multiCommand.execute",
+    //     "args": {
+    //         "command": "multiCommand.backwardKillWord"
+    //     },
+    //     "when": "textInputFocus && !editorReadonly"
+    //     "command": "editor.action.setSelectionAnchor",
+    //     "when": "editorTextFocus && !selectionAnchorSet"
+    //   },
+
     {
         "key": "ctrl+backspace",
         "command": "-deleteWordLeft",
@@ -178,11 +190,11 @@
         "command": "editor.cancelOperation",
         "when": "cancellableOperation"
     },
-    /*     {
-        "key": "ctrl+v",
-        "command": "cursorPageDown",
-        "when": "textInputFocus"
-    }, */
+    //      {
+    //     "key": "ctrl+v",
+    //     "command": "cursorPageDown",
+    //     "when": "textInputFocus"
+    // },
     {
         "key": "pagedown",
         "command": "cursorPageDown",
@@ -317,7 +329,7 @@
         "command": "editor.action.smartSelect.grow"
     },
     {
-        "key": "ctrl+shift+o",
+        "key": "ctrl+t",
         "command": "workbench.action.files.openFile"
     },
     {
