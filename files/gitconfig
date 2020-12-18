@@ -1,6 +1,7 @@
 [include]
 	path = .gitconfig.user
 	path = .gitconfig.sendemail
+	path = .gitconfig.windows
 [alias]
 	#sns = show --name-status --pretty=''
 	a = add
@@ -53,6 +54,5 @@
 [core]
 	quotepath = false
 	commitGraph = true
-	sshCommand = C:/WINDOWS/System32/OpenSSH/ssh.exe
 [gc]
 	writeCommitGraph = true
