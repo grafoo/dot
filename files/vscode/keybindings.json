@@ -132,7 +132,6 @@
         },
         "when": "textInputFocus && !editorReadonly"
     },
-
     // {
     //     "key": "ctrl+k ctrl+k",
     //     "command": "extension.multiCommand.execute",
@@ -143,7 +142,6 @@
     //     "command": "editor.action.setSelectionAnchor",
     //     "when": "editorTextFocus && !selectionAnchorSet"
     //   },
-
     {
         "key": "ctrl+backspace",
         "command": "-deleteWordLeft",
@@ -335,5 +333,25 @@
     {
         "key": "ctrl+o",
         "command": "-workbench.action.files.openFile"
+    },
+    {
+        "key": "alt+n",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+down",
+        "command": "-selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "alt+p",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+up",
+        "command": "-selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
     },
 ]

@@ -39,6 +39,22 @@
 		],
 		"description": "Add Artikel for B-VG"
 	},
+	"§ ABGB": {
+		"scope": "markdown",
+		"prefix": "pab",
+		"body": [
+			"§ $1 ABGB"
+		],
+		"description": "Add Paragraph for ABGB"
+	},
+	"§§ ABGB": {
+		"scope": "markdown",
+		"prefix": "ppab",
+		"body": [
+			"§§ $1 ABGB"
+		],
+		"description": "Add ParagraphParagraph for ABGB"
+	},
 	"Comment Stream": {
 		"scope": "markdown",
 		"prefix": "cs",
