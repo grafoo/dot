@@ -19,8 +19,15 @@ setup_keymap ()
         sudo loadkeys /usr/share/keymaps/legacy/i386/qwerty/uk.map.gz
         _kill_caps_lock
     elif test -f /etc/debian_version; then
-        dpkg -s console-data >/dev/null || sudo apt-get install console-data &&
-                sudo loadkeys /usr/share/keymaps/i386/qwerty/uk.kmap.gz
+        dpkg -s console-data >/dev/null || 
+		sudo apt-get install console-data &&
+			{
+				if test "$1" = "uk"; then
+					sudo loadkeys /usr/share/keymaps/i386/qwerty/uk.kmap.gz
+				else
+					sudo loadkeys /usr/share/keymaps/i386/qwertz/de-latin1-nodeadkeys.kmap.gz
+				fi
+			}
         _kill_caps_lock
     else
         echo "os not recognized"
